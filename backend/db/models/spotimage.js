@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            
+
             // mant spotimages have one spot
             SpotImage.belongsTo(
                 models.Spot,
@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     SpotImage.init({
-        id: DataTypes.INTEGER,
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+        },
         spotId: DataTypes.INTEGER,
         url: DataTypes.STRING,
         preview: DataTypes.BOOLEAN
