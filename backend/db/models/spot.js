@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            
+
             // Spots belongs to User
             Spot.belongsTo(
                 models.User,
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     Spot.init({
         id: DataTypes.INTEGER,
-        userId: DataTypes.INTEGER,
+        ownerId: DataTypes.INTEGER,
         address: DataTypes.STRING,
         city: DataTypes.STRING,
         state: DataTypes.STRING,
