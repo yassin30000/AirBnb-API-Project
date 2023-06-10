@@ -1,17 +1,17 @@
 'use strict';
 
-// let options = {};
-// if (process.env.NODE_ENV === 'production') {
-//     options.schema = process.env.SCHEMA;  // define your schema in options object
-// }
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+    options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 
 /** @type {import('sequelize-cli').Migration} */
 
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        // options.tableName = 'Spots';
-        await queryInterface.bulkInsert('Spots', [
+        options.tableName = 'Spots';
+        return queryInterface.bulkInsert('Spots', [
             {
                 address: "1414 Hello Ln",
                 ownerId: 1,
@@ -28,9 +28,9 @@ module.exports = {
     },
 
     down: async (queryInterface, Sequelize) => {
-        // options.tableName = 'Spots';
+        options.tableName = 'Spots';
         const Op = Sequelize.Op;
-        await queryInterface.bulkDelete('Spots', {
+        return queryInterface.bulkDelete(options, {
             name: { [Op.in]: ['demoSpot1'] }
         }, {});
     }
