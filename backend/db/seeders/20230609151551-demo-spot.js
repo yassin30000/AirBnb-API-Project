@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === 'production') {
 
 /** @type {import('sequelize-cli').Migration} */
 
+import { Spot } from ('../models/')
+
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
