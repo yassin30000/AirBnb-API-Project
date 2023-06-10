@@ -40,16 +40,55 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
         },
-        ownerId: DataTypes.INTEGER,
-        address: DataTypes.STRING,
-        city: DataTypes.STRING,
-        state: DataTypes.STRING,
-        country: DataTypes.STRING,
-        lat: DataTypes.DECIMAL,
-        lng: DataTypes.DECIMAL,
-        name: DataTypes.STRING,
-        price: DataTypes.DECIMAL,
+        ownerId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lat: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
+        lng: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                max: 50
+            }
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: false
+        },
         avgRating: DataTypes.DECIMAL,
         previewImage: DataTypes.STRING
     }, {
