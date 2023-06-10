@@ -60,26 +60,7 @@ router.post(
     }
 );
 
-// get all spots owned by current user
-router.get(
-    '/:userId/spots',
-    requireAuth,
-    async (req, res) => {
 
-        const { userId } = req.params;
-
-        const spots = await Spot.findAll({
-            where: {
-                ownerId: userId
-            }
-        })
-
-        res.json({
-            spots: spots
-        })
-
-    }
-)
 
 
 
