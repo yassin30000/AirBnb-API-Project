@@ -64,8 +64,26 @@ router.get(
             spots: spots
         });
     }
-)
+);
 
+// get all spots owned by current user
+router.get(
+    '/current',
+    requireAuth,
+    async (req, res) => {
 
+        const { user } = req;
+        const spots = await Spot.findAll({
+            where: {
+                ownerId: user.id
+            }
+        })
+
+        res.json({
+            spots: spots
+        })
+
+    }
+);
 
 module.exports = router;
