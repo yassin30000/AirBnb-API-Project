@@ -54,6 +54,18 @@ router.post(
     });
 
 
+// get all spots
+router.get(
+    '/',
+    async (req, res) => {
+        const spots = await Spot.findAll();
+
+        return res.json({
+            spots: spots
+        });
+    }
+)
+
 
 
 module.exports = router;
