@@ -11,7 +11,7 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         // options.tableName = 'Spots';
-        return queryInterface.bulkInsert('Spots', [
+        await queryInterface.bulkInsert('Spots', [
             {
                 address: "1414 Hello Ln",
                 ownerId: 1,
@@ -30,7 +30,7 @@ module.exports = {
     down: async (queryInterface, Sequelize) => {
         // options.tableName = 'Spots';
         const Op = Sequelize.Op;
-        return queryInterface.bulkDelete('Spots', {
+        await queryInterface.bulkDelete('Spots', {
             name: { [Op.in]: ['demoSpot1'] }
         }, {});
     }
