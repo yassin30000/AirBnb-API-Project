@@ -10,7 +10,7 @@
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        options.tableName = 'Spots';
+        // options.tableName = 'Spots';
         return queryInterface.bulkInsert('Spots', [
             {
                 address: "1414 Hello Ln",
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     down: async (queryInterface, Sequelize) => {
-        options.tableName = 'Spots';
+        // options.tableName = 'Spots';
         const Op = Sequelize.Op;
         return queryInterface.bulkDelete('Spots', {
             name: { [Op.in]: ['demoSpot1'] }
