@@ -22,9 +22,20 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
         },
-        reviewId: DataTypes.INTEGER,
-        url: DataTypes.STRING
+        reviewId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        url: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        }
     }, {
         sequelize,
         modelName: 'ReviewImage',
