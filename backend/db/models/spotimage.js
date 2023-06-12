@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             // mant spotimages have one spot
             SpotImage.belongsTo(
                 models.Spot,
-                { foreignKey: "spotId" }
+                { foreignKey: 'spotId' }
             )
         }
     }
@@ -22,8 +22,16 @@ module.exports = (sequelize, DataTypes) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            allowNull: false,
+            autoIncrement: true
         },
-        spotId: DataTypes.INTEGER,
+        spotId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Spots',
+                key: 'id'
+            }
+        },
         url: DataTypes.STRING,
         preview: DataTypes.BOOLEAN
     }, {
