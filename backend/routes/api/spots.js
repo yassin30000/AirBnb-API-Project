@@ -104,7 +104,7 @@ router.get(
                 }
             ],
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng',
-            'name','description','price','createdAt','updatedAt']
+                'name', 'description', 'price', 'createdAt', 'updatedAt']
         });
 
 
@@ -114,6 +114,35 @@ router.get(
             return res.json({ message: "Spot couldn't be found" })
         }
         res.json(spot)
+    });
+
+// Add an Image to a Spot based on the Spot's id
+router.post(
+    '/:spotId/images',
+    requireAuth,
+    async (req, res) => {
+        // spot needs to belong to current user with message: forbidden
+        const { spotId } = req.params;
+        const { user } = req;
+        const spot = await Spot.findByPk(spotId);
+        if (!spot) {
+            res.statusCode = 404;
+            res.json({ message: "Spot couldn't be found" })
+        }
+        if (spot.ownerId !== user.id) {
+            res.statusCode = 401;
+            return res.json({ message: "forbidden" })
+        }
+        else {
+            const { url, preview } = req.body;
+            const spotImage = await SpotImage.create({ url, spotId, preview });
+
+            return res.json({
+                id: spotImage.id,
+                url: spotImage.url,
+                preview: spotImage.preview
+            })
+        }
     }
 )
 
