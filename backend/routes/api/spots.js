@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, User } = require('../../db/models');
+const { Spot, User, SpotImage } = require('../../db/models');
 
 const router = express.Router();
 
@@ -85,5 +85,36 @@ router.get(
 
     }
 );
+
+// Get details of a Spot from an id
+router.get(
+    '/:spotId',
+    async (req, res) => {
+        const { spotId } = req.params;
+        const spot = await Spot.findByPk(spotId, {
+            include: [
+                {
+                    model: SpotImage,
+                    attributes: ['id', 'url', 'preview']
+                },
+                {
+                    model: User,
+                    as: 'Owner',
+                    attributes: ['id', 'firstName', 'lastName'],
+                }
+            ],
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng',
+            'name','description','price','createdAt','updatedAt']
+        });
+
+
+
+        if (!spot) {
+            res.statusCode = 404;
+            return res.json({ message: "Spot couldn't be found" })
+        }
+        res.json(spot)
+    }
+)
 
 module.exports = router;

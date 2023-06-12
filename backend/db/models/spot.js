@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             // Spots belongs to User
             Spot.belongsTo(
                 models.User,
-                { foreignKey: 'ownerId' }
+                { foreignKey: 'ownerId', as: "Owner" }
             );
 
             // Spots has many reviews
@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         ownerId: {
             type: DataTypes.INTEGER,
+            unique: false,
             references: {
                 model: 'Users',
                 key: 'id'
