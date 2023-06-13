@@ -6,36 +6,38 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 /** @type {import('sequelize-cli').Migration} */
+
+
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        options.tableName = 'SpotImages';
+        options.tableName = 'Bookings';
         return queryInterface.bulkInsert(options, [
             {
-                id: 1,
                 spotId: 1,
-                url: 'image url',
-                preview: true
+                userId: 2,
+                startDate: '2021-11-19',
+                endDate: '2021-11-20'
             },
             {
-                id: 2,
-                spotId: 1,
-                url: 'image url',
-                preview: true
-            },
-            {
-                id: 3,
                 spotId: 2,
-                url: 'image url',
-                preview: false
+                userId: 1,
+                startDate: "2021-12-19",
+                endDate: "2021-12-20"
+            },
+            {
+                spotId: 3,
+                userId: 1,
+                startDate: "2022-1-19",
+                endDate: "2022-1-20"
             }
         ], {});
     },
 
     down: async (queryInterface, Sequelize) => {
-        options.tableName = 'SpotImages';
+        options.tableName = 'Bookings';
         const Op = Sequelize.Op;
         return queryInterface.bulkDelete(options, {
-            url: { [Op.in]: ['image url'] }
+            spotId: { [Op.in]: [1, 2, 3] }
         }, {});
     }
 };
