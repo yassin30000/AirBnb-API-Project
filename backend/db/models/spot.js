@@ -94,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
         previewImage: DataTypes.STRING
     }, {
         sequelize,
-        modelName: 'Spot',
+        modelName: "Spot",
     });
     return Spot;
 };
