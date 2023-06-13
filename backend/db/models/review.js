@@ -14,19 +14,19 @@ module.exports = (sequelize, DataTypes) => {
             // many reviews belong to spot
             Review.belongsTo(
                 models.Spot,
-                { foreignKey: "spotId" }
+                { foreignKey: "spotId", onDelete: 'cascade', hooks: true }
             );
 
             // many reviews belong to one user
             Review.belongsTo(
                 models.User,
-                { foreignKey: "userId" }
+                { foreignKey: "userId", onDelete: 'cascade', hooks: true }
             );
 
             // one review has many reviewImages
             Review.hasMany(
                 models.ReviewImage,
-                { foreignKey: "reviewId" }
+                { foreignKey: "reviewId", onDelete: 'cascade', hooks: true }
             );
         }
     }
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         userId: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            // allowNull: false,
             references: {
                 model: 'User',
                 key: 'id'
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         spotId: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            // allowNull: false,
             references: {
                 model: 'Spot',
                 key: 'id'
