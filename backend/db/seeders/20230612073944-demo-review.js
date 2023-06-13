@@ -13,18 +13,21 @@ module.exports = {
         options.tableName = 'Reviews';
         return queryInterface.bulkInsert(options, [
             {
+                id: 1,
                 userId: 1,
                 spotId: 1,
                 review: "this was so cool",
                 stars: 5
             },
             {
+                id: 2,
                 userId: 2,
                 spotId: 2,
                 review: "this was pretty nice",
                 stars: 4
             },
             {
+                id: 3,
                 userId: 3,
                 spotId: 3,
                 review: "place smelled like farts",
