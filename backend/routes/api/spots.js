@@ -80,7 +80,7 @@ router.get(
         })
 
         res.json({
-            spots: spots
+            Spots: spots
         })
 
     }
