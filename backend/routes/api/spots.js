@@ -371,11 +371,6 @@ router.post(
             const bookedStart = book.startDate;
             const bookedEnd = book.endDate;
             
-            // if (endDate == end) endError();
-            // if (startDate == start) startError();
-            // if (start <= endDate && start >= startDate) startError();
-            // if (end <= endDate && end >= startDate) endError();
-            
             // startDate is same as prior booking
             if (startDate === bookedStart || startDate === bookedEnd) return startError();
             // endDate is same as prior booking
