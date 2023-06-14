@@ -358,8 +358,8 @@ router.post(
             return res.json({ message: "Forbidden" })
         }
 
-        // if startDate is after endDate
-        if (startDate >= endDate) {
+        // endDate cant be before startDate
+        if (endDate <= startDate) {
             res.title = "Bad Request"
             res.statusCode = 400;
             return res.json({ message: "Bad Request", errors: { endDate: "endDate cannot be on or before startDate" } })
@@ -368,13 +368,25 @@ router.post(
         // need to add booking conflict
         const bookings = await Booking.findAll({ where: { spotId: spotId } });
         for (let book of bookings) {
-            const start = book.startDate;
-            const end = book.endDate;
+            const bookedStart = book.startDate;
+            const bookedEnd = book.endDate;
             
-            if (endDate == end) endError();
-            if (startDate == start) startError();
-            if (start <= endDate && start >= startDate) startError();
-            if (end <= endDate && end >= startDate) endError();
+            // if (endDate == end) endError();
+            // if (startDate == start) startError();
+            // if (start <= endDate && start >= startDate) startError();
+            // if (end <= endDate && end >= startDate) endError();
+            
+            // startDate is same as prior booking
+            if (startDate === bookedStart || startDate === bookedEnd) return startError();
+            // endDate is same as prior booking
+            if (endDate === bookedStart || endDate === bookedEnd) return endError();
+            // if startDate is in between prior booking
+            if (startDate < bookedEnd && startDate > bookedStart) return startError();
+            // if endDate is in between prior booking
+            if (endDate < bookedEnd && endDate > bookedStart) return endError();
+            // if booking is in between start and end date
+            if (startDate < bookedStart && endDate > bookedEnd) return bothError();
+
         }
 
         function startError() {
@@ -391,6 +403,16 @@ router.post(
             return res.json({
                 message: "Sorry, this spot is already booked for the specified dates",
                 errors: {
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+        }
+        function bothError() {
+            res.statusCode = 403;
+            return res.json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
                     endDate: "End date conflicts with an existing booking"
                 }
             })
