@@ -371,10 +371,10 @@ router.post(
             const start = book.startDate;
             const end = book.endDate;
             
-            if (endDate == end) endError();
-            if (startDate == start) startError();
-            if (start <= endDate && start >= startDate) startError();
-            if (end <= endDate && end >= startDate) endError();
+            // if (endDate == end) endError();
+            // if (startDate == start) startError();
+            if (startDate >= start && startDate <= end) startError();
+            if (endDate >= start && endDate <= end) endError();
         }
 
         function startError() {
