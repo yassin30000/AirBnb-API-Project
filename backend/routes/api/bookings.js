@@ -16,7 +16,7 @@ const validateBooking = [
     handleValidationErrors
 ]
 
-//get all bokings by current user
+// get all bokings by current user
 router.get(
     '/current',
     requireAuth,
@@ -101,7 +101,7 @@ router.put(
             if (startDate < bookedEnd && startDate > bookedStart) return startError();
             // if endDate is in between prior booking
             if (endDate < bookedEnd && endDate > bookedStart) return endError();
-            // if booking is in between start and end date
+            // if prior booking is in between start and end date
             if (startDate < bookedStart && endDate > bookedEnd) return bothError();
         }
 
@@ -166,8 +166,10 @@ router.delete(
             return res.json({ message: "Booking couldn't be found" })
         }
 
-        // spot needs to be owned by current user
-        if (booking.userId !== user.id) {
+        const spot = await Spot.findByPk(booking.spotId);
+
+        // booking must belong to current user || spot must be owned by current user
+        if (booking.userId !== user.id || spot.ownerId !== user.id) {
             res.statusCode = 401;
             return res.json({ message: "forbidden" })
         }
