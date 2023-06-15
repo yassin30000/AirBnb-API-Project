@@ -18,17 +18,23 @@ module.exports = {
             },
             reviewId: {
                 type: Sequelize.INTEGER,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'Reviews',
+                    key: 'id'
+                }
             },
             url: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
             createdAt: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             },
             updatedAt: {
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             }
         }, options);
     },
