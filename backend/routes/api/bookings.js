@@ -46,7 +46,8 @@ router.put(
     requireAuth,
     validateBooking,
     async (req, res) => {
-        const { bookingId } = req.params;
+        let { bookingId } = req.params;
+        bookingId = Number(bookingId);
         const { user } = req;
         const { startDate, endDate } = req.body;
         const booking = await Booking.findByPk(bookingId);
@@ -137,7 +138,8 @@ router.put(
         // if there are no problems, edit booking
         booking.startDate = startDate;
         booking.endDate = endDate;
-
+        booking.update({startDate, endDate})
+        booking.save();
         return res.json({
             id: booking.id,
             spotId: booking.spotId,

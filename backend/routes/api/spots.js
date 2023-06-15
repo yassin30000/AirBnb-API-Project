@@ -178,6 +178,8 @@ router.put(
         spot.description = description;
         spot.price = price;
 
+        spot.update({ address, city, state, country, lat, lng, name, description, price });
+        spot.save();
         return res.json({
             id: spot.id,
             ownerId: spot.ownerId,
@@ -370,7 +372,7 @@ router.post(
         for (let book of bookings) {
             const bookedStart = book.startDate;
             const bookedEnd = book.endDate;
-            
+
             // startDate is same as prior booking
             if (startDate === bookedStart || startDate === bookedEnd) return startError();
             // endDate is same as prior booking
