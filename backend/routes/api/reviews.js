@@ -115,7 +115,7 @@ router.put(
             res.statusCode = 404;
             res.json({ "message": "Review couldn't be found" })
         }
-        
+
         // review must belong to curr user
         if (currReview.userId !== user.id) {
             res.status = 403;
@@ -125,6 +125,9 @@ router.put(
         const { review, stars } = req.body;
         currReview.review = review;
         currReview.stars = Number(stars);
+
+        currReview.update({ review, stars })
+        currReview.save();
 
         return res.json({
             id: currReview.id,
