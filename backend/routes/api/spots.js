@@ -78,7 +78,11 @@ router.get(
 
         const spots = await Spot.findAll({
             limit: size,
-            offset: size * (page - 1)
+            offset: size * (page - 1),
+            where: {
+                price: { [Op.gt]: minPrice }
+                // maxPrice: { [Op.lt]: maxPrice }
+            }
         });
 
         // get avgRating
@@ -117,6 +121,9 @@ router.get(
     '/:spotId',
     async (req, res) => {
         const { spotId } = req.params;
+
+        const numOfReviews = await Review.count({ where: { spotId: spotId } })
+
         const spot = await Spot.findByPk(spotId, {
             include: [
                 {
@@ -130,16 +137,20 @@ router.get(
                 }
             ],
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng',
-                'name', 'description', 'price', 'createdAt', 'updatedAt']
+                'name', 'description', 'price' , 'createdAt', 'updatedAt']
         });
 
 
+        // need to add numReviews
+
+        // need to add avgSpotRating
 
         if (!spot) {
             res.statusCode = 404;
             return res.json({ message: "Spot couldn't be found" })
         }
-        res.json(spot)
+
+        res.json(spot);
     });
 
 // Add an Image to a Spot based on the Spot's id
