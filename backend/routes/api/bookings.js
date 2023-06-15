@@ -182,7 +182,7 @@ router.delete(
 
         return res.json({ "message": "Successfully deleted" })
     }
-)
+);
 
 
 
