@@ -365,7 +365,7 @@ router.post(
             return res.json({ message: "Bad Request", errors: { endDate: "endDate cannot be on or before startDate" } })
         }
 
-        // need to add booking conflict
+        // booking conflict
         const bookings = await Booking.findAll({ where: { spotId: spotId } });
         for (let book of bookings) {
             const bookedStart = book.startDate;
