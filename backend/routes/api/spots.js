@@ -58,7 +58,33 @@ router.post(
 router.get(
     '/',
     async (req, res) => {
-        const spots = await Spot.findAll();
+        let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+        page = Number(page);
+        size = Number(size);
+        minLat = Number(minLat);
+        maxLat = Number(maxLat);
+        minLng = Number(minLng);
+        maxLng = Number(maxLng);
+        minPrice = Number(minPrice);
+        maxPrice = Number(maxPrice);
+
+        if (page < 1) return res.json({ message: "Bad Request", errors: { page: "Page must be greater than or equal to 1" } })
+        if (page > 10) return res.json({ message: "Bad Request", errors: { page: "Page must be less than or equal to 10" } })
+        if (size < 1) return res.json({ message: "Bad Request", errors: { size: "Size must be greater than or equal to 1" } })
+        if (size > 20) return res.json({ message: "Bad Request", errors: { size: "Size must be less than or equal to 20" } })
+
+        if (minPrice && minPrice < 0) return res.json({ message: "Bad Request", errors: { minPrice: "Minimum price must be greater than or equal to 0" } })
+        if (maxPrice && maxPrice < 0) return res.json({ message: "Bad Request", errors: { maxPrice: "Maximum price must be greater than or equal to 0" } })
+
+        const spots = await Spot.findAll({
+            limit: size,
+            offset: size * (page - 1)
+        });
+
+        // get avgRating
+
+
+        // get previewImage
 
         return res.json({
             spots: spots
@@ -383,7 +409,6 @@ router.post(
             if (endDate < bookedEnd && endDate > bookedStart) return endError();
             // if booking is in between start and end date
             if (startDate < bookedStart && endDate > bookedEnd) return bothError();
-
         }
 
         function startError() {
@@ -428,6 +453,7 @@ router.post(
         })
     }
 );
+
 
 
 module.exports = router;
