@@ -40,6 +40,15 @@ router.get(
     }
 );
 
+// create current date in "yyyy/mm/dd" format
+const d = new Date();
+let day = d.getDate();
+if (day < 10) day = `0${day}`;
+let month = d.getMonth();
+if (month < 10) month = `0${month}`;
+let year = d.getFullYear();
+let curr = `${year}-${month}-${day}`;
+
 // edit a booking
 router.put(
     '/:bookingId',
@@ -71,16 +80,6 @@ router.put(
             res.statusCode = 400;
             return res.json({ message: "Bad Request", errors: { endDate: "endDate cannot come before startDate" } })
         }
-
-
-        // create current date in "yyyy/mm/dd" format
-        const d = new Date();
-        let day = d.getDate();
-        if (day < 10) day = `0${day}`;
-        let month = d.getMonth();
-        if (month < 10) month = `0${month}`;
-        let year = d.getFullYear();
-        let curr = `${year}-${month}-${day}`;
 
         // cant edit booking past the endDate
         if (booking.endDate <= curr) {
@@ -151,6 +150,39 @@ router.put(
         })
     }
 );
+
+// delete a booking
+router.delete(
+    '/:bookingId',
+    requireAuth,
+    async (req, res) => {
+        const { bookingId } = req.params;
+        const { user } = req;
+        const booking = await Booking.findByPk(bookingId);
+
+        // spot couldnt be found
+        if (!booking) {
+            res.statusCode = 404;
+            return res.json({ message: "Booking couldn't be found" })
+        }
+
+        // spot needs to be owned by current user
+        if (booking.userId !== user.id) {
+            res.statusCode = 401;
+            return res.json({ message: "forbidden" })
+        }
+
+        // bookings that have been started cant be deleted
+        if (booking.startDate <= curr) {
+            res.statusCode = 403;
+            return res.json({ message: "Bookings that have been started can't be deleted" })
+        }
+
+        await booking.destroy();
+
+        return res.json({ "message": "Successfully deleted" })
+    }
+)
 
 
 
