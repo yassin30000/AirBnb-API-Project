@@ -399,23 +399,19 @@ router.post(
             res.statusCode = 404;
             return res.json({ message: "Spot couldn't be found" })
         }
-        
-        const pastReview = await Review.findAll({
-            where: {
-                userId: userId
-            }
-        });
 
-        // if user already has review for this spot
-        if (pastReview) {
-            res.statusCode = 403;
-            return res.json({ "message": "User already has a review for this spot" })
+        const reviews = await Review.findAll({ where: { spotId: spot.id } });
+
+        for (const review of reviews) {
+            if (review.userId == user.id) {
+                res.statusCode = 403;
+                return res.json({ "message": "User already has a review for this spot" })
+            }
         }
-        
+
         const { review, stars } = req.body;
         const newReview = await Review.create({ review, stars, spotId, userId });
 
-        
         return res.json({
             id: newReview.id,
             userId: userId,

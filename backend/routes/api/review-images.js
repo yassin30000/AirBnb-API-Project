@@ -18,7 +18,7 @@ router.delete(
         // cant find reviewImage
         if (!reviewImage) {
             res.statusCode = 404;
-            return res.json({ message: "Spot Image couldn't be found" })
+            return res.json({ message: "Review Image couldn't be found" })
         }
 
         const review = await Review.findByPk(reviewImage.reviewId);

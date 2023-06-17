@@ -34,6 +34,15 @@ router.get(
             ]
         });
 
+        for (const booking of bookings) {
+            const spot = booking.Spot;
+            const previewImage = await SpotImage.findOne({
+                attributes: ['url'],
+                where: { spotId: spot.id, preview: true }
+            });
+            if (previewImage) spot.dataValues.previewImage = previewImage.url
+        }
+
         return res.json({
             Bookings: bookings
         })
@@ -64,7 +73,7 @@ router.put(
         // cant find booking from bookingId
         if (!booking) {
             res.statusCode = 404;
-            res.json({ message : "Booking couldn't be found" })
+            res.json({ message: "Booking couldn't be found" })
         }
         const spotId = booking.spotId;
 
@@ -137,7 +146,7 @@ router.put(
         // if there are no problems, edit booking
         booking.startDate = startDate;
         booking.endDate = endDate;
-        booking.update({startDate, endDate})
+        booking.update({ startDate, endDate })
         booking.save();
         return res.json({
             id: booking.id,
@@ -160,7 +169,7 @@ router.delete(
         const { user } = req;
         const booking = await Booking.findByPk(bookingId);
 
-        // spot couldnt be found
+        // booking couldnt be found
         if (!booking) {
             res.statusCode = 404;
             return res.json({ message: "Booking couldn't be found" })
@@ -168,10 +177,13 @@ router.delete(
 
         const spot = await Spot.findByPk(booking.spotId);
 
-        // booking must belong to current user || spot must be owned by current user
-        if (booking.userId !== user.id || spot.ownerId !== user.id) {
+        let spotOwner, bookOwner;
+        if (spot.ownerId == user.id) spotOwner = true;
+        else if (booking.userId == user.id) bookOwner = true;
+
+        if (!bookOwner && !spotOwner) {
             res.statusCode = 401;
-            return res.json({ message: "forbidden" })
+            return res.json({ message: "forbidden" });
         }
 
         // bookings that have been started cant be deleted
@@ -181,12 +193,8 @@ router.delete(
         }
 
         await booking.destroy();
-
         return res.json({ "message": "Successfully deleted" })
     }
 );
-
-
-
 
 module.exports = router;
