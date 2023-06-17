@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
             // many reviews belong to spot
             Review.belongsTo(
                 models.Spot,
-                { foreignKey: "spotId", onDelete: 'cascade', hooks: true }
+                { foreignKey: "spotId" }
             );
 
             // many reviews belong to one user
             Review.belongsTo(
                 models.User,
-                { foreignKey: "userId", onDelete: 'cascade', hooks: true }
+                { foreignKey: "userId" }
             );
 
             // one review has many reviewImages

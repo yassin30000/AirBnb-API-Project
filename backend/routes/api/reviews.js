@@ -49,6 +49,17 @@ router.get(
             ]
         });
 
+        for (const review of reviews) {
+            const spot = review.Spot;
+            const previewImage = await SpotImage.findOne({
+                attributes: ["url"],
+                where: { spotId: spot.id, preview: true },
+            });
+            if (previewImage) {
+                spot.dataValues.previewImage = previewImage.url;
+            }
+        }
+
         return res.json({
             Reviews: reviews
         })
@@ -146,15 +157,14 @@ router.delete(
     '/:reviewId',
     requireAuth,
     async (req, res) => {
-        let { reviewId } = req.params;
-        reviewId = Number(reviewId);
+        const { reviewId } = req.params;
         const { user } = req;
         const review = await Review.findByPk(reviewId);
 
         // review couldnt be found
         if (!review) {
             res.statusCode = 404;
-            return res.json({ message: "Review couldn't be found"})
+            return res.json({ message: "Review couldn't be found" })
         }
 
         // review must be owned by user
@@ -163,9 +173,12 @@ router.delete(
             return res.json({ message: "forbidden" });
         }
 
-        await review.destroy();
-        return res.json({ message: "Successfully deleted"})
+        else {
+            await review.destroy();
+            return res.json({ "message": "Successfully deleted" });
+        }
+
     }
-)
+);
 
 module.exports = router;
