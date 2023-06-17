@@ -167,6 +167,28 @@ router.get(
             }
         })
 
+        for (const spot of spots) {
+            const previewImage = await SpotImage.findOne({
+                attributes: ["url"],
+                where: { spotId: spot.id, preview: true },
+            });
+
+            if (previewImage) spot.dataValues.previewImage = previewImage.dataValues.url;
+
+            const spotAvgRating = await Spot.findByPk(spot.id, {
+                include: [{ model: Review, attributes: [] }],
+                attributes: [
+                    "id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "description", "price", "createdAt", "updatedAt",
+                    [sequelize.fn("ROUND", sequelize.fn("AVG", sequelize.col("stars")), 2), "avgRating"],
+                ],
+                group: ["Spot.id"],
+            });
+
+            const avgRating = spotAvgRating.dataValues.avgRating;
+
+            if (spotAvgRating) spot.dataValues.avgRating = avgRating;
+        }
+
         res.json({
             Spots: spots
         })
@@ -179,9 +201,6 @@ router.get(
     '/:spotId',
     async (req, res) => {
         const { spotId } = req.params;
-
-        const numOfReviews = await Review.count({ where: { spotId: spotId } })
-
         const spot = await Spot.findByPk(spotId, {
             include: [
                 {
@@ -194,21 +213,33 @@ router.get(
                     attributes: ['id', 'firstName', 'lastName'],
                 }
             ],
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng',
-                'name', 'description', 'price', 'createdAt', 'updatedAt']
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt']
         });
 
-
-        // need to add numReviews
-
-        // need to add avgSpotRating
-
+        // if spot cant be found
         if (!spot) {
             res.statusCode = 404;
             return res.json({ message: "Spot couldn't be found" })
         }
 
-        res.json(spot);
+        const numOfReviews = await Review.count({ where: { spotId: spotId } })
+
+        const spotAvgRating = await Spot.findByPk(spotId, {
+            include: [{ model: Review, attributes: [] }],
+            attributes: [
+                "id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "description", "price", "createdAt", "updatedAt",
+                [sequelize.fn("ROUND", sequelize.fn("AVG", sequelize.col("stars")), 2), "avgRating"],
+            ],
+            group: ["Spot.id"],
+        });
+
+        const avgRating = spotAvgRating.dataValues.avgRating;
+
+        if (spotAvgRating) spot.dataValues.avgRating = avgRating;
+
+        spot.dataValues.numReviews = numOfReviews;
+
+        return res.json(spot);
     });
 
 // Add an Image to a Spot based on the Spot's id
@@ -368,10 +399,7 @@ router.post(
             res.statusCode = 404;
             return res.json({ message: "Spot couldn't be found" })
         }
-
-        const { review, stars } = req.body;
-        const newReview = await Review.create({ review, stars, spotId, userId });
-
+        
         const pastReview = await Review.findAll({
             where: {
                 userId: userId
@@ -383,7 +411,11 @@ router.post(
             res.statusCode = 403;
             return res.json({ "message": "User already has a review for this spot" })
         }
+        
+        const { review, stars } = req.body;
+        const newReview = await Review.create({ review, stars, spotId, userId });
 
+        
         return res.json({
             id: newReview.id,
             userId: userId,
