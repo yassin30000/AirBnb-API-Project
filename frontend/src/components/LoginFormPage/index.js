@@ -28,8 +28,8 @@ function LoginFormPage() {
 
     return (
         <>
-            <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
+                <h1>Log In</h1>
                 <label>
                     Username or Email
                     <input
