@@ -36,14 +36,14 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+            <button onClick={openMenu} style={{fontSize:'34px'}}>
+                <i className="fas fa-user-circle"></i>
             </button>
             <ul className={ulClassName} ref={ulRef}>
                 <li>{user.username}</li>
                 <li>{user.firstName} {user.lastName}</li>
                 <li>{user.email}</li>
-                <li>
+                <li className="logoutLI">
                     <button onClick={logout}>Log Out</button>
                 </li>
             </ul>

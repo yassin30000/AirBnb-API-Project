@@ -4,9 +4,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 
-li:visited{
+a:visited{
     text-decoration: none;
     color: black;
 }
@@ -15,3 +16,41 @@ li:visited{
     display: none;
 }
 
+button {
+    border: 0;
+    background: none;
+}
+
+
+.homeBtn > a {
+    color: #e61e4d;
+    font-weight: bold;
+}
+
+ul li {
+    margin: 10px;
+    text-align: right;
+    font-size: 24px;
+}
+
+li a {
+    padding: 10px;
+    font-size: 24px;
+}
+.logoutLI > button {
+    font-size: 24px;
+        color: #e61e4d;
+}
+
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    font-size: 24px;
+}
