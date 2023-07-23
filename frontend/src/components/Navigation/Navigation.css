@@ -4,7 +4,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    
 }
 
 a:visited{
@@ -28,29 +27,35 @@ button {
 }
 
 ul li {
-    margin: 10px;
+    /* margin: 10px; */
     text-align: right;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 li a {
     padding: 10px;
     font-size: 24px;
 }
+
 .logoutLI > button {
-    font-size: 24px;
+    font-size: 20px;
         color: #e61e4d;
 }
-
-
 .navBar {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    padding-left: 40px;
-    padding-right: 40px;
+    align-items: center;
+    padding: 10px;
+    padding-left: 85px;
+    padding-right: 85px;
     width: 100%;
     position: fixed;
     top: 0;
     font-size: 24px;
+    border-bottom: 1px solid rgb(219, 216, 216);
+}
+
+.logoPic {
+    margin-right: 30px;
+    height: 40px;
 }

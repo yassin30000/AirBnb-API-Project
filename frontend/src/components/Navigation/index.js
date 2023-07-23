@@ -9,7 +9,7 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
-
+    console.log(sessionUser)
     if (sessionUser) {
         sessionLinks = (
             <li className='profileBtn'>
@@ -28,7 +28,9 @@ function Navigation({ isLoaded }) {
     return (
         <ul className='navBar'>
             <li className='homeBtn'>
-                <NavLink exact to="/">airbnb</NavLink>
+                <NavLink exact to="/">
+                    {/* <img className='logoPic' src='https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png' alt='airbnblogo'></img> */}
+                    airbnb</NavLink>
             </li>
             {isLoaded && sessionLinks}
         </ul>

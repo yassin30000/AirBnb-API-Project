@@ -7,10 +7,18 @@
 }
 
 .signupForm {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 300px 300px;
+    grid-template-areas: "signup signup"
+        "... ..."
+        "... ..."
+        "... ..."
+        "btn btn";
     text-align: center;
     height: max-content;
     z-index: 1;
-    max-width: 500px;
+    /* max-width: 500px; */
     padding: 45px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 20px;
@@ -19,7 +27,8 @@
 .signupForm h1 {
     margin-top: 0;
     margin-bottom: 15px;
-    font-size: 24px;
+    font-size: 30px;
+    grid-area: signup;
 }
 
 .signupForm input {
@@ -46,6 +55,7 @@
     transition: all 0.3 ease;
     cursor: pointer;
     border-radius: 20px;
+    grid-area: btn;
 }
 
 .signupForm button:hover {
