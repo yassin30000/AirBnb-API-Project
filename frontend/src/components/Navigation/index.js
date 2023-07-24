@@ -9,7 +9,7 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
-    console.log(sessionUser)
+
     if (sessionUser) {
         sessionLinks = (
             <li className='profileBtn'>
@@ -18,10 +18,10 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <li>
+            <>
                 <NavLink to="/login">Log In</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
-            </li>
+            </>
         );
     }
 
@@ -29,10 +29,12 @@ function Navigation({ isLoaded }) {
         <ul className='navBar'>
             <li className='homeBtn'>
                 <NavLink exact to="/">
-                    {/* <img className='logoPic' src='https://ebenezersuites.com/wp-content/uploads/2016/06/airbnb-logo-266x300@2x.png' alt='airbnblogo'></img> */}
-                    airbnb</NavLink>
+                    <img className='logoPic' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' alt='airbnblogo'></img>
+                </NavLink>
             </li>
-            {isLoaded && sessionLinks}
+            <li>
+                {isLoaded && sessionLinks}
+            </li>
         </ul>
     );
 }
