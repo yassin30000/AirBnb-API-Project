@@ -36,7 +36,7 @@
 
 .loginForm button {
     outline: 0;
-    background: #e61e4d;
+    background: #ff385c;
     width: 100%;
     border: 1px solid #FFFFFF;
     padding: 15px;
@@ -49,9 +49,9 @@
 }
 
 .loginForm button:hover {
-    color: #e61e4d;
+    color: #ff385c;
     background-color: #FFFFFF;
-    border: 1px solid #e61e4d;
+    border: 1px solid #ff385c;
 }
 
 .loginForm > h1 {
