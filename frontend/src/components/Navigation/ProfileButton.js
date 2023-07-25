@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button className='profileBtn' onClick={openMenu} style={{color:'grey'}}>
+            <button className='profileBtn' onClick={openMenu} style={{ color: 'grey' }}>
                 <i className="fas fa-user-circle"></i>
             </button>
 
