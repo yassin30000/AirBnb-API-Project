@@ -8,11 +8,12 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import './index.css'
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -25,10 +26,17 @@ function App() {
           <Route path="/login">
             <LoginFormPage />
           </Route>
+
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
+          <Route path='/'>
+            <LandingPage />
+          </Route>
+
         </Switch>
+
       )}
     </div>
   );

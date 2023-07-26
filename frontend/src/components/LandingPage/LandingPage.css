@@ -1,0 +1,65 @@
+.home-wrapper {
+    margin-top: 125px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 100vh;
+}
+
+.spots-list {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 300px 300px 300px;
+}
+
+.spot-tile {
+    max-width: 300px;
+    height: 300px;
+}
+
+.spot-tile img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
+
+.spot-tile .spot-name {
+    font-size: 16px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spot-tile p {
+    font-size: 16px;
+    color: #717171;
+    font-family: 'AirbnbCereal_W_Lt';
+    margin-bottom: 6px;
+}
+
+.spot-tile > span {
+    font-size: 16px;
+    color: black;
+    font-family: 'AirbnbCereal_W_Md';
+}
+
+.spot-tile >span >span {
+    font-size: 16px;
+    color: black;
+    font-family: 'AirbnbCereal_W_Lt';
+}
+
+.stars {
+    font-family: 'AirbnbCereal_W_Lt';
+        display: flex;
+        align-items: center;
+
+}
+
+.stars i {
+    font-size: 14px;
+    margin-right: 5px;
+    
+}
