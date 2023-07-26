@@ -16,40 +16,53 @@ module.exports = {
                 id: 1,
                 address: "1414 Hello Ln",
                 ownerId: 1,
-                city: "Walnut Creek",
+                city: "Malibu",
                 state: "California",
                 country: "United States",
                 lat: 37.7645358,
                 lng: -122.4730327,
-                name: "demoSpot1",
-                description: "spot for a npc to live",
-                price: 123
+                name: "Escondido Beach",
+                description: "Escon",
+                price: 3103
             },
             {
                 id: 2,
                 address: "1355 Becnia Ave",
                 ownerId: 2,
-                city: "Benicia",
+                city: "Malibu",
                 state: "California",
                 country: "United States",
                 lat: 122.7645358,
                 lng: -15.4730327,
-                name: "demoSpot2",
+                name: "Malibu Beach",
                 description: "spot for a npc to live",
-                price: 123
+                price: 8250
             },
             {
                 id: 3,
                 address: "1212 Reno Rd",
                 ownerId: 3,
-                city: "Reno",
-                state: "Nevada",
+                city: "Newport Beach",
+                state: "California",
                 country: "United States",
                 lat: 42.7645358,
                 lng: 122.4730327,
-                name: "demoSpot3",
+                name: "Newport Beach",
                 description: "spot for a npc to live",
-                price: 123
+                price: 1275
+            },
+            {
+                id: 4,
+                address: "1212 Reno Rd",
+                ownerId: 3,
+                city: "Oxnard",
+                state: "California",
+                country: "United States",
+                lat: 42.7645358,
+                lng: 122.4730327,
+                name: "Oxnard State Beach Park",
+                description: "spot for a npc to live",
+                price: 1275
             }
         ], {});
     },

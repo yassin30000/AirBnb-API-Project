@@ -27,6 +27,12 @@ module.exports = {
                 spotId: 3,
                 url: 'https://a0.muscache.com/im/pictures/e99f4706-2c4e-4690-a7da-d6ad5184c50f.jpg?im_w=720',
                 preview: true
+            },
+            {
+                id: 4,
+                spotId: 4,
+                url: 'https://a0.muscache.com/im/pictures/66526778/a45cd4a4_original.jpg?im_w=720',
+                preview: true
             }
         ], {});
     },

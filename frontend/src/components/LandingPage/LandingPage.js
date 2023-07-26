@@ -14,24 +14,31 @@ const LandingPage = () => {
         dispatch(fetchSpots());
     }, [dispatch]);
 
+    const noRatings = 'new'
+
     return (
         <div className='home-wrapper'>
             <div className='spots-list'>
                 {spots[0]?.map(spot => (
                     <div key={spot.id} className='spot-tile'>
 
+                        <div className='tooltip'>
+                            {spot.name}
+                        </div>
+
                         <img src={spot.previewImage} />
 
-                        <div className='spot-name'>{spot?.name}
+                        <div className='spot-name'>{spot?.city}, {spot?.state}
                             <span className='stars'>
                                 <i class="fa-solid fa-star"></i>
-                                {spot.avgRating}
+                                {spot.avgRating ? spot.avgRating: noRatings}
                             </span>
 
                         </div>
 
 
-                        <p>{spot?.description}</p>
+                        <p>{spot?.name}</p>
+
                         <span className='priceDiv'>${spot?.price}
                             <span>/night</span>
 
