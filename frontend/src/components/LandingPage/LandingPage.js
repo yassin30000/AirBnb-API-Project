@@ -14,6 +14,8 @@ const LandingPage = () => {
         dispatch(fetchSpots());
     }, [dispatch]);
 
+    const noRatings = 'new'
+
     return (
         <div className='home-wrapper'>
             <div className='spots-list'>
@@ -29,7 +31,7 @@ const LandingPage = () => {
                         <div className='spot-name'>{spot?.city}, {spot?.state}
                             <span className='stars'>
                                 <i class="fa-solid fa-star"></i>
-                                {spot.avgRating}
+                                {spot.avgRating ? spot.avgRating: noRatings}
                             </span>
 
                         </div>
