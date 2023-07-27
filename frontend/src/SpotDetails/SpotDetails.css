@@ -1,0 +1,21 @@
+.spot-details-wrapper {
+
+    display: flex;
+    justify-content: center;
+}
+
+.spot-details-center {
+        margin-top: 125px;
+            margin-left: 80px;
+            margin-right: 80px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            /* background-color: red; */
+}
+
+
+.spot-details-heading {
+    font-size: 30px;
+}

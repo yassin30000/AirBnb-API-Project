@@ -6,6 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import SpotDetails from "./SpotDetails/SpotDetails";
+import { fetchSpots } from "./store/spots";
 
 import './index.css'
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -16,6 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(fetchSpots());
   }, [dispatch]);
 
   return (
@@ -31,9 +34,15 @@ function App() {
             <SignupFormPage />
           </Route>
 
+          <Route path='/spots/:spotId'>
+            
+            <SpotDetails isLoaded={isLoaded} />
+          </Route>
+
           <Route path='/'>
             <LandingPage />
           </Route>
+
 
         </Switch>
 

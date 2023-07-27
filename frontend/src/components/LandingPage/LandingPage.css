@@ -87,10 +87,8 @@
 
 .spot-tile:hover .tooltip {
     opacity: 1;
-    position: fixed;
-    text-align: center;
-    margin-top: 90px;
-    background-color: white;
-    border-radius: 0 10px 10px 0;
-    padding: 10px;
+}
+
+.spot-tile > a {
+    display: none;
 }
