@@ -6,7 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SpotDetails from "./SpotDetails/SpotDetails";
+import SpotDetails from "./components/SpotDetails/SpotDetails";
 import { fetchSpots } from "./store/spots";
 
 import './index.css'

@@ -2,17 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spots';
 import './LandingPage.css'
-import { useHistory } from 'react-router-dom'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 const LandingPage = () => {
 
     const dispatch = useDispatch();
-
     const spotsObject = useSelector((state) => state.spots.list);
-    const spots =  spotsObject? Object.values(spotsObject): [];
-
-    console.log('spotsObject+++++++++', spotsObject)
+    const spots = spotsObject ? Object.values(spotsObject) : [];
 
     useEffect(() => {
         dispatch(fetchSpots());
@@ -22,12 +19,9 @@ const LandingPage = () => {
         <div className='home-wrapper'>
             <div className='spots-list'>
                 {spots[0]?.map(spot => (
-                    <NavLink to={`spots/${spot.id}`}>
-                        <div key={spot.id} className='spot-tile'>
+                    <NavLink to={`spots/${spot.id}`} >
 
-                            <div className='tooltip'>
-                                {spot.name}
-                            </div>
+                        <div key={spot.id} className='spot-tile'>
 
                             <img src={spot.previewImage} />
 

@@ -19,3 +19,25 @@
 .spot-details-heading {
     font-size: 30px;
 }
+
+.reserve-div {
+    border: 1px solid black;
+    width: max-content;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.reserve-btn {
+    background-color: #ff385c;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.post-review-btn {
+    background-color: #ff385c;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+    width: max-content;
+}
