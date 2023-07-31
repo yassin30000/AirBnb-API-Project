@@ -72,35 +72,3 @@
     margin-right: 4px;
 
 }
-
-/* .tooltip {
-    opacity: 0;
-    z-index: 1;
-    transition: opacity 0.5s ease, transform 0.3s ease;
-    display: hidden;
-    position: fixed;
-    text-align: center;
-    margin-top: 90px;
-    background-color: white;
-    border-radius: 0 10px 10px 0;
-    padding: 10px;
-} */
-
-.spot-tile:hover .tooltip {
-    opacity: 1;
-}
-
-.tooltip {
-    opacity: 0;
-    position: absolute;
-    background-color: black;
-    color: white;
-    top: 0;
-    left: 0;
-}
-
-
-
-.spot-tile > a {
-    display: none;
-}

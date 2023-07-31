@@ -20,7 +20,7 @@ const LandingPage = () => {
 
             <div className='spots-list'>
                 {spots[0]?.map(spot => (
-                    <NavLink to={`spots/${spot.id}`} title={spot.name} >
+                    <NavLink to={`/spots/${spot.id}`} title={spot.name} >
 
                         <div key={spot.id} className='spot-tile'>
 

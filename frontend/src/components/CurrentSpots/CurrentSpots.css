@@ -1,0 +1,125 @@
+.current-spots-wrapper {
+    margin-top: 100px;
+    margin-left: 80px;
+    margin-right: 80px;
+    height: 100vh;
+}
+
+.current-spots-wrapper h1,
+.current-spots-wrapper button {
+    margin-left: 15px;
+}
+
+.create-spot-btn {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.create-spot-btn a {
+    width: max-content;
+
+    border: 1px solid #ff385c;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 8px;
+    color: white;
+    background-color: #ff385c;
+}
+
+.create-spot-btn a:hover,
+.create-spot-btn:hover {
+    background-color: white;
+    color: #ff385c;
+    cursor: pointer;
+}
+
+.spots-list {
+    display: grid;
+    justify-content: space-between;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.spot-tile {
+    width: 330px;
+    transition: box-shadow .3s;
+    padding: 15px;
+    border-radius: 15px;
+    color: black;
+}
+
+.spot-tile:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    cursor: pointer;
+}
+
+.spot-tile img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
+
+.spot-tile .spot-name {
+    font-size: 16px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spot-tile p {
+    font-size: 16px;
+    color: #717171;
+    font-family: 'AirbnbCereal_W_Lt';
+    margin-bottom: 6px;
+}
+
+.spot-tile>span {
+    font-size: 16px;
+    color: black;
+    font-family: 'AirbnbCereal_W_Md';
+}
+
+.spot-tile>a {
+    display: none;
+}
+
+/* UPDATE AND DELETE BUTTONS */
+
+.update-delete-div {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.update-spot-btn {
+    background-color: rgb(104, 207, 209);
+    border: 1px solid rgb(104, 207, 209);
+}
+
+.update-spot-btn a {
+    color: white;
+}
+
+.delete-spot-btn {
+    border: 1px solid #ff385c;
+    background-color: #ff385c;
+    color: white;
+}
+
+.delete-spot-btn,
+.update-spot-btn {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 8px;
+    transition: box-shadow .3s;
+}
+
+.delete-spot-btn:hover,
+.update-spot-btn:hover {
+    box-shadow: 2px 2px 2px black;
+}
