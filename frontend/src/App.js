@@ -44,11 +44,11 @@ function App() {
             <NewSpot />
           </Route>
 
-          <Route path = '/spots/current' >
+          <Route path='/spots/current' >
             <CurrentSpots />
           </Route>
 
-          <Route path = '/spots/:spotId/edit'>
+          <Route path='/spots/:spotId/edit'>
             <UpdateSpot />
           </Route>
 
@@ -56,7 +56,7 @@ function App() {
             <SpotDetails isLoaded={isLoaded} />
           </Route>
 
-          <Route path='/'>
+          <Route exact path='/'>
             <LandingPage />
           </Route>
 
