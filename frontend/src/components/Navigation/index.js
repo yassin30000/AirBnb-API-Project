@@ -8,23 +8,6 @@ import './Navigation.css';
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
-    let sessionLinks;
-
-    if (sessionUser) {
-        sessionLinks = (
-            <li className='profileBtn'>
-                <ProfileButton user={sessionUser} />
-            </li>
-        );
-    } else {
-        sessionLinks = (
-            <li>
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
-            </li>
-        );
-    }
-
     return (
         <ul className='navBar'>
             <li className='homeBtn'>
@@ -32,8 +15,20 @@ function Navigation({ isLoaded }) {
                     <img className='logoPic' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png' alt='airbnblogo'></img>
                 </NavLink>
             </li>
-            
-                {isLoaded && sessionLinks}
+
+            {isLoaded && (
+                <li>
+                    <div className="nav-links-container">
+                        <div className="create-spot-link">
+                            {sessionUser && (<NavLink to='/spots/new'>Create a new Spot</NavLink>)}
+                        </div>
+                        <div>
+                            <ProfileButton user={sessionUser} />
+                        </div>
+                    </div>
+                </li>
+            )}
+
 
         </ul>
     );

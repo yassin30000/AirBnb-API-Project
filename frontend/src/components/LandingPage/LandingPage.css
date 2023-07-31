@@ -13,10 +13,11 @@
 }
 
 .spot-tile {
-    width: max-content;
+    width: 330px;
     transition: box-shadow .3s;
     padding: 15px;
     border-radius: 15px;
+    color: black;
 }
 
 .spot-tile:hover {

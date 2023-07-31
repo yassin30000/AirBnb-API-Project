@@ -1,27 +1,23 @@
-.form-container {
+.create-spot-form-wrapper {
     width: 100vw;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
-.loginForm {
+.new-spot-form {
+    margin-top: 150px;
     text-align: center;
     height: max-content;
-    max-width: 360px;
+    max-width: 700px;
     padding: 45px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 20px;
+    margin-bottom: 80px;
 }
 
-.loginForm h1 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 30px;
-}
-
-.loginForm input {
+.new-spot-form input {
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -33,7 +29,7 @@
     border-radius: 20px;
 }
 
-.loginForm button {
+.new-spot-form button {
     outline: 0;
     background: #ff385c;
     width: 100%;
@@ -47,12 +43,10 @@
     border-radius: 20px;
 }
 
-.loginForm button:hover {
-    color: #ff385c;
-    background-color: #FFFFFF;
-    border: 1px solid #ff385c;
+.new-spot-form h3 {
+    padding-top: 20px;
 }
 
-.loginForm > h1 {
-    text-align: center;
+.new-spot-form label {
+    padding-top: 20px;
 }

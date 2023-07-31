@@ -18,18 +18,30 @@ function LoginFormPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
+
+
+
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+                console.log('DATA: ', data)
+                if (data && data.message) {
+
+                    setErrors({message: data.message});
+                    console.log('ERRORS: ', errors)
+                }
             }
         );
+
     };
 
     return (
         <div className="form-container">
             <form className='loginForm' onSubmit={handleSubmit}>
                 <h1>Log In</h1>
+            <div className="log-in-errors">
+                {errors && <p>{errors.message}</p>}
+            </div>
                 <label>
                     Username or Email
                     <input
@@ -48,7 +60,7 @@ function LoginFormPage() {
                         required
                     />
                 </label>
-                {errors.credential && <p>{errors.credential}</p>}
+                
                 <button type="submit">Log In</button>
             </form>
         </div>

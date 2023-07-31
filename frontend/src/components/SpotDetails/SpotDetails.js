@@ -1,41 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SpotDetails.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchSpotDetails, fetchSpotReviews, fetchSpots } from '../../store/spots';
+import ReviewModal from '../Modals/ReviewModal';
+import Modal from '../Modals/Modal';
+
 
 const SpotDetails = ({ isLoaded }) => {
 
     const dispatch = useDispatch();
     const { spotId } = useParams();
-
     const spot = useSelector((state) => state.spots.spotDetails);
-
     const reviewsObj = useSelector(state => state.spots.spotReviews);
     const reviewsObjAgain = reviewsObj ? Object.values(reviewsObj) : [];
-    const reviews = reviewsObjAgain[0];
-
+    const reviews = reviewsObjAgain[0] ? reviewsObjAgain[0] : [];
     const sessionUser = useSelector(state => state.session.user);
 
-    const postReviewBtn = sessionUser ? (<button className='post-review-btn'>Post Review</button>) : (<></>)
+    let hasReview, isOwner, postReviewBtn;
 
-    //2023-07-26T07:16:40.000Z
+    if (reviews && spot && sessionUser && Array.isArray(reviews)) {
+        for (let review of reviews) {
+            if (review.userId === sessionUser.id) {
+                hasReview = true;
+            }
+        }
 
-    // fixing date
-    const months = {
-        1: 'January',
-        2: 'February',
-        3: 'March',
-        4: 'April',
-        5: 'May',
-        6: 'June',
-        7: 'July',
-        8: 'August',
-        9: 'September',
-        10: 'October',
-        11: 'November',
-        12: 'December',
+        if (sessionUser.id === spot.Owner.id) {
+            isOwner = true;
+        }
+    }
+
+    if (!hasReview && !isOwner && sessionUser) {
+        postReviewBtn = (<Modal buttonText='Post Review' modalComponent={<ReviewModal />} />);
+    } else {
+        postReviewBtn = (<></>);
     }
 
     const fixDate = (dateString) => {
@@ -48,33 +48,49 @@ const SpotDetails = ({ isLoaded }) => {
         dispatch(fetchSpotReviews(spotId));
     }, [dispatch]);
 
+
+
     return (
 
         <div className='spot-details-wrapper'>
-            {spot && reviews && (
+            {spot && reviews && Array.isArray(reviews) && (
                 <div className='spot-details-center'>
 
                     <div className='spot-details-heading'>{spot.name}</div>
                     <div className='spot-details-sub'>{spot.city}, {spot.state}, {spot.country}</div>
 
                     <div className='spot-images-wrapper'>
-                        {spot.SpotImages?.map((image) => (
-                            <img src={image.url} alt={spot.name}></img>
+                        {spot.SpotImages?.map((image, index) => (
+                            <img
+                                key={index}
+                                className={index === 0 ? "first-image" : ""}
+                                src={image.url} alt={spot.name}></img>
                         ))}
                     </div>
 
+                    <div className='description-heading'>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</div>
                     <div className='spot-description-wrapper'>
 
-                        <div className='description-heading'>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</div>
                         <div className='spot-details-description'>{spot.description}</div>
                         <div className='reserve-div'>
 
 
                             <div className='price-line'>
-                                ${spot.price} /night
-                                <i class="fa-solid fa-star"></i>
-                                {spot.avgRating ? spot.avgRating : 'new'}
-                                {spot.numReviews} reviews
+                                <p>
+                                    <span className='price'>${spot.price.toLocaleString()}</span> /night
+
+                                </p>
+                                <p className='rating'>
+                                    <p>
+                                        <i class="fa-solid fa-star"></i>
+                                        {spot.avgRating ? spot.avgRating : 'new'}
+                                    </p>
+                                    <p>
+
+                                        {spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}
+                                    </p>
+                                </p>
+
 
                             </div>
 
@@ -84,17 +100,20 @@ const SpotDetails = ({ isLoaded }) => {
                     </div>
 
                     <div className='num-of-reviews'>
-                        <i class="fa-solid fa-star"></i>
-                        {spot.avgRating ? spot.avgRating : 'new'}
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            {spot.avgRating ? spot.avgRating : 'new'}
 
-                        {spot.numReviews} reviews
+                        </span>
+                        ·
+                        <span>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</span>
                     </div>
 
                     {postReviewBtn}
 
                     <div className='spot-reviews-wrapper'>
 
-                        {reviews?.map((review) => (
+                        {Array.isArray(reviews) && reviews?.map((review) => (
                             <div className='review-wrapper'>
 
                                 <div className='reveiw-name'>{review.User.firstName}</div>
@@ -103,6 +122,8 @@ const SpotDetails = ({ isLoaded }) => {
                             </div>
                         ))}
                     </div>
+
+
 
                 </div>
             )}

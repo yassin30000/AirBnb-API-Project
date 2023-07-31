@@ -17,9 +17,10 @@ const LandingPage = () => {
 
     return (
         <div className='home-wrapper'>
+
             <div className='spots-list'>
                 {spots[0]?.map(spot => (
-                    <NavLink to={`spots/${spot.id}`} >
+                    <NavLink to={`spots/${spot.id}`} title={spot.name} >
 
                         <div key={spot.id} className='spot-tile'>
 
@@ -36,7 +37,7 @@ const LandingPage = () => {
 
                             <p>{spot?.name}</p>
 
-                            <span className='priceDiv'>${spot?.price}
+                            <span className='priceDiv'>${spot?.price.toLocaleString()}
                                 <span>/night</span>
 
                             </span>
@@ -45,6 +46,7 @@ const LandingPage = () => {
                     </NavLink>
                 ))}
             </div>
+
         </div>
     )
 };

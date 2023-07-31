@@ -12,6 +12,8 @@ import { fetchSpots } from "./store/spots";
 import './index.css'
 import LandingPage from "./components/LandingPage/LandingPage";
 
+import NewSpot from "./components/NewSpot/NewSpot";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,8 +36,11 @@ function App() {
             <SignupFormPage />
           </Route>
 
+          <Route path='/spots/new'>
+            <NewSpot />
+          </Route>
+
           <Route path='/spots/:spotId'>
-            
             <SpotDetails isLoaded={isLoaded} />
           </Route>
 
