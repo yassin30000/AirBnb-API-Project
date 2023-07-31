@@ -6,9 +6,13 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import SpotDetails from "./components/SpotDetails/SpotDetails";
+import { fetchSpots } from "./store/spots";
 
 import './index.css'
 import LandingPage from "./components/LandingPage/LandingPage";
+
+import NewSpot from "./components/NewSpot/NewSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(fetchSpots());
   }, [dispatch]);
 
   return (
@@ -31,9 +36,18 @@ function App() {
             <SignupFormPage />
           </Route>
 
+          <Route path='/spots/new'>
+            <NewSpot />
+          </Route>
+
+          <Route path='/spots/:spotId'>
+            <SpotDetails isLoaded={isLoaded} />
+          </Route>
+
           <Route path='/'>
             <LandingPage />
           </Route>
+
 
         </Switch>
 
