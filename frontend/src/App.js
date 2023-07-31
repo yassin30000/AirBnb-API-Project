@@ -8,11 +8,15 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
 import { fetchSpots } from "./store/spots";
+import CurrentSpots from "./components/CurrentSpots/CurrentSpots";
+import UpdateSpot from "./components/UpdateSpot/UpdateSpot";
 
 import './index.css'
 import LandingPage from "./components/LandingPage/LandingPage";
 
 import NewSpot from "./components/NewSpot/NewSpot";
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -40,11 +44,19 @@ function App() {
             <NewSpot />
           </Route>
 
+          <Route path='/spots/current' >
+            <CurrentSpots />
+          </Route>
+
+          <Route path='/spots/:spotId/edit'>
+            <UpdateSpot />
+          </Route>
+
           <Route path='/spots/:spotId'>
             <SpotDetails isLoaded={isLoaded} />
           </Route>
 
-          <Route path='/'>
+          <Route exact path='/'>
             <LandingPage />
           </Route>
 
