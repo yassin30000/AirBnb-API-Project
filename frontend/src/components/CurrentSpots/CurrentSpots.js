@@ -19,7 +19,7 @@ function CurrentSpots() {
     const oldSpots = spotsObject ? Object.values(spotsObject) : [];
     const spots = oldSpots[0] ? oldSpots[0] : [];
     const userSpots = Array.isArray(spots) ? spots?.filter(spot => spot.ownerId === sessionUser.id) : [];
-    
+
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(fetchSpots());
