@@ -1,5 +1,4 @@
 .spot-details-wrapper {
-    /* background-color: red; */
     height: 100%;
     margin-top: 80px;
     display: flex;
@@ -8,18 +7,7 @@
 
 .spot-details-center {
     padding-top: 25px;
-
-
-    /* margin-top: 125px;
-    margin-left: 80px;
-    margin-right: 80px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; */
     max-width: 1000px;
-    /* background-color: red; */
-
 }
 
 
@@ -36,7 +24,6 @@
 }
 
 .spot-images-wrapper {
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -60,14 +47,12 @@
     height: 100%;
 }
 
-
-
 .num-of-reviews {
     margin-top: 15px;
     font-size: 24px;
     display: flex;
     justify-content: space-between;
-    width: 160px;
+    width: 200px;
     margin-bottom: 15px;
 }
 
@@ -97,7 +82,7 @@
     padding: 15px;
     border-radius: 10px;
     height: max-content;
-
+    margin-bottom: 20px;
 }
 
 .reserve-btn {
@@ -108,6 +93,11 @@
     width: 100%;
     font-size: 15px;
     margin-top: 12px;
+    transition: box-shadow .3s;
+}
+
+.reserve-btn:hover {
+    box-shadow: 2px 2px 2px black;
 }
 
 .price-line {
@@ -127,13 +117,10 @@
 }
 
 
-.post-review-btn {
-    background-color: #ff385c;
-    padding: 5px;
-    color: white;
-    border-radius: 5px;
-    width: max-content;
-    margin-top: 10px;
+
+
+.post-review-btn:hover {
+    box-shadow: 2px 2px 2px black;
 }
 
 .review-modal,
@@ -148,9 +135,7 @@
 }
 
 .review-modal-overlay {
-
     background: rgba(49, 49, 49, 0.8);
-
 }
 
 .review-modal-content {
@@ -166,13 +151,22 @@
     min-width: 300px;
 }
 
-.close-review-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 7px;
-}
+
 
 body.active-modal {
     overflow-y: hidden;
+}
+
+#post-review-btn {
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ff385c;
+    margin-bottom: 15px;
+    transition: box-shadow .3s;
+}
+
+#post-review-btn:hover {
+    box-shadow: 2px 2px 2px black;
 }

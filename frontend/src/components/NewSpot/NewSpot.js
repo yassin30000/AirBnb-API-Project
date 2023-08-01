@@ -92,11 +92,9 @@ const NewSpot = () => {
                 description,
                 price
             };
-            console.log('SAFE SPOT: ', safeSpot)
+
             try {
                 const createdSpot = await dispatch(createSpot(safeSpot));
-
-                console.log('CREATED SPOT: ', createdSpot.spot.id)
 
                 await dispatch(
                     createSpotImage(createdSpot.spot.id, { preview: true, url: previewImage })
@@ -140,6 +138,7 @@ const NewSpot = () => {
                         <p className='error-create'>{errors.address}</p>
                     )}
                 </div>
+
                 <div>
                     <input
                         type="string"

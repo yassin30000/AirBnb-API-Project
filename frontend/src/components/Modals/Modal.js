@@ -14,7 +14,7 @@ export default function Modal({ buttonText, modalComponent }) {
 
     return (
         <>
-            <button onClick={toggleModal}>{buttonText}</button>
+            <button onClick={toggleModal} className="open-modal-button">{buttonText}</button>
             {modal && (
                 <div className="modal-container">
                     {modalComponent}

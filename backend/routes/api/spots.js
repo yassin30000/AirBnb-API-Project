@@ -289,6 +289,9 @@ router.put(
 
         // spot needs to be owned by current user
         if (spot.ownerId !== user.id) {
+            console.log('BACKEDND: OWNER ID: ', spot.ownerId)
+            console.log('BACKEDND: USER ID: ', user.id)
+
             res.statusCode = 401;
             return res.json({ message: "forbidden" })
         }

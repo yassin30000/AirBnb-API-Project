@@ -42,6 +42,7 @@ textarea {
     color: #ff385c;
 }
 
+.review-modal-content
 .modal-close-btn {
     border: 1px solid black;
     background-color: black;
@@ -53,6 +54,7 @@ textarea {
     text-align: center;
 }
 
+.review-modal-content
 .modal-close-btn:hover {
     border: 1px solid black;
     background-color: white;

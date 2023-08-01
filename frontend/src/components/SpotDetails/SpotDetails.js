@@ -12,14 +12,16 @@ const SpotDetails = ({ isLoaded }) => {
 
     const dispatch = useDispatch();
     const { spotId } = useParams();
+
+
     const spot = useSelector((state) => state.spots.spotDetails);
+    console.log('SPOT', spot)
     const reviewsObj = useSelector(state => state.spots.spotReviews);
     const reviewsObjAgain = reviewsObj ? Object.values(reviewsObj) : [];
     const reviews = reviewsObjAgain[0] ? reviewsObjAgain[0] : [];
     const sessionUser = useSelector(state => state.session.user);
 
     let hasReview, isOwner, postReviewBtn;
-
     if (reviews && spot && sessionUser && Array.isArray(reviews)) {
         for (let review of reviews) {
             if (review.userId === sessionUser.id) {
@@ -32,8 +34,14 @@ const SpotDetails = ({ isLoaded }) => {
         }
     }
 
+    postReviewBtn = (
+        <div id='post-review-btn'>
+
+            <Modal buttonText='Post Review' modalComponent={<ReviewModal />} />
+        </div>
+    );
+    console.log(postReviewBtn)
     if (!hasReview && !isOwner && sessionUser) {
-        postReviewBtn = (<Modal buttonText='Post Review' modalComponent={<ReviewModal />} />);
     } else {
         postReviewBtn = (<></>);
     }
@@ -46,9 +54,7 @@ const SpotDetails = ({ isLoaded }) => {
     useEffect(() => {
         dispatch(fetchSpotDetails(spotId));
         dispatch(fetchSpotReviews(spotId));
-    }, [dispatch]);
-
-
+    }, [dispatch, spotId]);
 
     return (
 
@@ -108,6 +114,7 @@ const SpotDetails = ({ isLoaded }) => {
                         ·
                         <span>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</span>
                     </div>
+
 
                     {postReviewBtn}
 

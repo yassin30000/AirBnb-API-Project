@@ -3,33 +3,28 @@ import '../CurrentSpots/CurrentSpots.css';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchSpots } from '../../store/spots';
+import { fetchSpots, removeSpot } from '../../store/spots';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from '../Modals/Modal';
+import ConfirmDelete from '../Modals/ConfirmDelete';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function CurrentSpots() {
-
     const dispatch = useDispatch();
     const spotsObject = useSelector((state) => state.spots.list);
     const sessionUser = useSelector(state => state.session.user);
-
     const oldSpots = spotsObject ? Object.values(spotsObject) : [];
     const spots = oldSpots[0] ? oldSpots[0] : [];
-    const userSpots = [];
-
-
-
-    for (let spot of spots) {
-
-        if (spot.OwnerId == sessionUser.id) {
-            userSpots.push(spot);
-        }
-    }
-
-
+    const userSpots = Array.isArray(spots) ? spots?.filter(spot => spot.ownerId === sessionUser.id) : [];
+    
     useEffect(() => {
-        dispatch(fetchSpots());
-
+        const fetchData = async () => {
+            await dispatch(fetchSpots());
+        };
+        fetchData();
     }, [dispatch]);
 
     return (
@@ -46,43 +41,50 @@ function CurrentSpots() {
 
             <div className='spots-list'>
 
-                {spots?.map(spot => (
+                {Array.isArray(userSpots) && userSpots?.map(spot => (
 
-                    <NavLink to={`/spots/${spot.id}`} title={spot.name} >
 
-                        <div key={spot.id} className='spot-tile'>
 
-                            <img src={spot.previewImage} />
+                    <div key={spot.id} className='spot-tile'>
 
-                            <div className='spot-name'>{spot?.city}, {spot?.state}
-                                <span className='stars'>
-                                    <i class="fa-solid fa-star"></i>
-                                    {spot.avgRating ? spot.avgRating : 'new'}
-                                </span>
+                        <NavLink to={`/spots/${spot.id}`} title={spot.name}>
+                            <div>
 
+                                <img src={spot.previewImage} alt='Spot Preview' className='spot-image' />
                             </div>
 
+                        </NavLink>
 
-                            <p>{spot?.name}</p>
-
-                            <span className='priceDiv'>${spot?.price.toLocaleString()}
-                                <span>/night</span>
-
+                        <div className='spot-name'>{spot?.city}, {spot?.state}
+                            <span className='stars'>
+                                <i class="fa-solid fa-star"></i>
+                                {spot.avgRating ? spot.avgRating : 'new'}
                             </span>
 
-                            <div className='update-delete-div'>
+                        </div>
 
-                                <div className='update-spot-btn'>
-                                    <NavLink to={`/spots/${spot.id}/edit`}>Update</NavLink>
-                                </div>
 
-                                <div className='delete-spot-btn'>
-                                    delete
-                                </div>
+                        <p>{spot?.name}</p>
+
+                        <span className='priceDiv'>${spot?.price.toLocaleString()}
+                            <span>/night</span>
+
+                        </span>
+
+                        <div className='update-delete-div'>
+
+                            <div className='update-spot-btn'>
+                                <NavLink to={`/spots/${spot.id}/edit`}>Update</NavLink>
+                            </div>
+
+                            <div className='delete-spot-btn'>
+                                <Modal modalComponent={<ConfirmDelete spotId={spot.id} />} buttonText='Delete' />
                             </div>
 
                         </div>
-                    </NavLink>
+
+                    </div>
+
                 ))}
             </div>
         </div>
