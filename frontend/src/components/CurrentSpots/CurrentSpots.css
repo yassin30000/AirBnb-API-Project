@@ -5,8 +5,7 @@
     height: 100vh;
 }
 
-.current-spots-wrapper h1,
-.current-spots-wrapper button {
+.current-spots-wrapper h1 {
     margin-left: 15px;
 }
 
@@ -83,10 +82,6 @@
     font-family: 'AirbnbCereal_W_Md';
 }
 
-.spot-tile>a {
-    display: none;
-}
-
 /* UPDATE AND DELETE BUTTONS */
 
 .update-delete-div {
@@ -97,7 +92,6 @@
 
 .update-spot-btn {
     background-color: rgb(104, 207, 209);
-    border: 1px solid rgb(104, 207, 209);
 }
 
 .update-spot-btn a {
@@ -105,9 +99,7 @@
 }
 
 .delete-spot-btn {
-    border: 1px solid #ff385c;
     background-color: #ff385c;
-    color: white;
 }
 
 .delete-spot-btn,
@@ -117,9 +109,17 @@
     padding: 5px;
     border-radius: 8px;
     transition: box-shadow .3s;
+        font-size: 18px;
 }
 
 .delete-spot-btn:hover,
 .update-spot-btn:hover {
     box-shadow: 2px 2px 2px black;
 }
+
+.open-modal-button {
+    background-color: #ff385c;
+    color: white;
+    font-size: 18px;
+}
+

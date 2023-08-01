@@ -31,8 +31,6 @@ export default function ReviewModal() {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
         const errors = {};
 
         if (review.length < 10) errors.review = 'Review must be 10 or more characters';
