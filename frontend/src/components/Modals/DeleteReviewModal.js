@@ -9,6 +9,7 @@ export default function DeleteReviewModal({ reviewId }) {
     const handleYesClick = async (e) => {
 
         dispatch(deleteReview(reviewId));
+        window.location.reload();
     }
 
     return (
