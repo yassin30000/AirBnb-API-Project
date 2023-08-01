@@ -167,6 +167,30 @@ export const updateSpot = (spotId, spotData) => async (dispatch) => {
 };
 
 
+// delete a review
+const DELETE_REVIEW = "spots/DELETE_REVIEW";
+const deleteReviewAction = (reviewId) => ({
+    type: DELETE_REVIEW,
+    reviewId,
+});
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+            method: "DELETE",
+        });
+
+        if (response.ok) {
+            dispatch(deleteReviewAction(reviewId));
+        } else {
+            console.log("Review deletion failed:", response);
+        }
+    } catch (error) {
+        console.log("Review deletion failed:", error);
+    }
+};
+
+
 // reducer
 
 const initialState = { list: [] };
@@ -187,6 +211,9 @@ const spotsReducer = (state = initialState, action) => {
 
         case UPDATE_SPOT: 
             return { ...state, spotDetails: action.spotDetails}
+
+        case DELETE_REVIEW:
+            return { ...state, spotReviews: action.spotReviews}
 
         default:
             return state;

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { fetchSpotDetails, fetchSpotReviews, fetchSpots } from '../../store/spots';
 import ReviewModal from '../Modals/ReviewModal';
 import Modal from '../Modals/Modal';
-
+import DeleteReviewModal from '../Modals/DeleteReviewModal';
 
 const SpotDetails = ({ isLoaded }) => {
 
@@ -126,6 +126,11 @@ const SpotDetails = ({ isLoaded }) => {
                                 <div className='reveiw-name'>{review.User.firstName}</div>
                                 <div className='review-date'>{fixDate(review.updatedAt)}</div>
                                 <div className='review-review'>{review.review}</div>
+
+                                {review.userId === sessionUser.id && (
+                                    // <button id='delete-review-btn'>Delete Review</button>
+                                    <Modal modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText="Delete Review" />
+                                )}
                             </div>
                         ))}
                     </div>
