@@ -157,6 +157,7 @@ body.active-modal {
     overflow-y: hidden;
 }
 
+#delete-review-btn,
 #post-review-btn {
     width: 120px;
     text-align: center;
@@ -165,8 +166,14 @@ body.active-modal {
     background-color: #ff385c;
     margin-bottom: 15px;
     transition: box-shadow .3s;
+
 }
 
+#delete-review-btn:hover,
 #post-review-btn:hover {
     box-shadow: 2px 2px 2px black;
+}
+
+#delete-review-btn {
+    color: white;
 }

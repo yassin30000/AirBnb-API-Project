@@ -5,10 +5,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { createSpotReview } from "../../store/spots";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ReviewModal() {
-
+    const history = useHistory();
     const [review, setReview] = useState('');
     const [stars, setStarRating] = useState(null);
     const [errors, setErrors] = useState({});
@@ -31,12 +31,13 @@ export default function ReviewModal() {
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         const errors = {};
 
         if (review.length < 10) errors.review = 'Review must be 10 or more characters';
         if (!stars) errors.stars = 'Star Rating is required'
 
-        setErrors(errors)
+        setErrors(errors);
 
         if (Object.values(errors).length === 0) {
             setValidSubmit(true);
@@ -46,14 +47,15 @@ export default function ReviewModal() {
             console.log(safeReview)
 
             try {
-                return await dispatch(createSpotReview(spotId, safeReview))
-
+                await dispatch(createSpotReview(spotId, safeReview))
+                window.location.reload();
+                history.push(`/spots/${spotId}`)
             } catch (error) {
                 console.log('REVIEW CREATING FAILED IN REVIEWMODAL.JS: ', error)
             }
-
             setValidSubmit(false)
         }
+
     };
 
     return (
