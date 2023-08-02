@@ -12,7 +12,7 @@
     max-width: 360px;
     padding: 45px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
 .loginForm h1 {
@@ -30,29 +30,47 @@
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
-.loginForm button {
-    outline: 0;
+.loginForm #submit-login-form-btn {
     background: #ff385c;
     width: 100%;
-    border: 1px solid #FFFFFF;
     padding: 15px;
     color: #FFFFFF;
-    font-size: 20px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+    font-size: 14px;
+    transition: box-shadow .3s;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
-.loginForm button:hover {
-    color: #ff385c;
-    background-color: #FFFFFF;
-    border: 1px solid #ff385c;
+.loginForm #submit-login-form-btn:hover {
+    box-shadow: 2px 2px 2px black;
 }
 
-.loginForm > h1 {
+.loginForm>h1 {
     text-align: center;
+}
+
+
+
+
+#demo-user-login-btn {
+    -webkit-mask:
+    conic-gradient(from 180deg at top 8px right 8px, #0000 90deg, #000 0) var(--_i, 200%) 0 /200% var(--_i, 8px) border-box no-repeat,
+    conic-gradient(at bottom 8px left 8px, #0000 90deg, #000 0) 0 var(--_i, 200%)/var(--_i, 8px) 200% border-box no-repeat,
+    linear-gradient(#000 0 0) padding-box no-repeat;
+    border: 1px dashed;
+    transition: .3s, -webkit-mask-position .3s .3s;
+    margin-top: 20px;
+    color: red;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#demo-user-login-btn:hover {
+    cursor: pointer;
+    --_i: 100%;
+    color: #ff385c;
+    transition: .3s, -webkit-mask-size .3s .3s;
 }
