@@ -198,3 +198,7 @@ body.active-modal {
 #delete-review-modal-div {
     width: max-content;
 }
+
+#first-post-txt {
+    margin-bottom: 15px;
+}
