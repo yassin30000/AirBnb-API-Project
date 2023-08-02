@@ -38,31 +38,53 @@
     border: 0;
     margin: 10px 0 15px;
     padding: 15px;
-    box-sizing: border-box;
     font-size: 14px;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
-.signupForm button {
-    outline: 0;
+#signup-form-button:disabled {
+    background-color: dimgrey;
+
+}
+
+#signup-form-button:disabled:hover {
+    background-color: dimgrey;
+    cursor: default;
+    box-shadow: none;
+}
+
+#signup-form-button {
     background: #ff385c;
     width: 100%;
-    border: 1px solid #FFFFFF;
     padding: 15px;
     color: #FFFFFF;
-    font-size: 20px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+    font-size: 14px;
+    transition: box-shadow .3s;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 8px;
     grid-area: btn;
 }
 
-.signupForm button:hover {
+#signup-form-button:hover {
+    box-shadow: 2px 2px 2px black;
+}
+
+/* .signupForm button {
+    background: #ff385c;
+        width: 100%;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        transition: box-shadow .3s;
+        cursor: pointer;
+        border-radius: 8px;
+} */
+
+/* .signupForm button:hover {
     color: #ff385c;
     background-color: #FFFFFF;
     border: 1px solid #ff385c;
-}
+} */
 
 .signupForm>h1 {
     text-align: center;

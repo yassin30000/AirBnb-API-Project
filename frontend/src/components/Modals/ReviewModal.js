@@ -29,6 +29,8 @@ export default function ReviewModal() {
         setHoveredStars(null);
     };
 
+    const reviewValid = review.length < 10;
+    const validStars = !stars;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -103,7 +105,7 @@ export default function ReviewModal() {
                             ))}
 
                         </div>
-                        <button disabled={validSubmit} className='review-submit-button' type="submit">Submit your Review</button>
+                        <button disabled={reviewValid || validStars} className='review-submit-button' type="submit">Submit your Review</button>
                     </form>
                 </div>
             </div>

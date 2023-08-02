@@ -19,6 +19,16 @@ function SignupFormPage() {
 
     if (sessionUser) return <Redirect to="/" />;
 
+    const emailValid = !email.length;
+    const usernameValid = !username.length
+    const usernameLength = username.length < 4;
+    const firstNameValid = !firstName.length;
+    const lastNameValid = !lastName.length;
+    const passwordValid = !password.length;
+    const passwordLength = password.length < 6;
+    const confirmPasswordValid = !confirmPassword.length;
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
@@ -107,7 +117,7 @@ function SignupFormPage() {
                     />
                 </label>
                 {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-                <button type="submit">Sign Up</button>
+                <button type="submit" disabled={emailValid || usernameValid || usernameLength || firstNameValid || lastNameValid || passwordValid || passwordLength || confirmPasswordValid} id="signup-form-button">Sign Up</button>
             </form>
         </div>
     );
