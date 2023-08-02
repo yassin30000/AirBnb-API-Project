@@ -52,6 +52,8 @@ textarea {
     width: 30px;
     height: 30px;
     text-align: center;
+    transition: background-color .3s;
+    transition: color .3s;
 }
 
 .review-modal-content
@@ -64,6 +66,8 @@ textarea {
 .review-modal-content {
     border-radius: 10px;
     padding: 25px;
+    background-color: white;
+    width: 400px;
 }
 
 .modal-close-btn-center {

@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
                 <li>
                     <div className="nav-links-container">
                         <div className="create-spot-link">
-                            {sessionUser && (<NavLink to='/spots/new'>Create a new Spot</NavLink>)}
+                            {sessionUser && (<NavLink to='/spots/new'>Airbnb your home</NavLink>)}
                         </div>
                         <div>
                             <ProfileButton user={sessionUser} />

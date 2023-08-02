@@ -16,8 +16,8 @@ const NewSpot = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [previewImage, setPreviewImage] = useState("");
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
+    // const [lat, setLat] = useState(0);
+    // const [lng, setLng] = useState(0);
     const [urls, setUrls] = useState(["", "", "", ""]);
     const [preview, setPreview] = useState('')
     const [errors, setErrors] = useState({});
@@ -27,8 +27,8 @@ const NewSpot = () => {
     const updateCity = (e) => setCity(e.target.value);
     const updateState = (e) => setState(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
-    const updateLat = (e) => setLat(e.target.value);
-    const updateLng = (e) => setLng(e.target.value);
+    // const updateLat = (e) => setLat(e.target.value);
+    // const updateLng = (e) => setLng(e.target.value);
     const updateName = (e) => setName(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
@@ -54,14 +54,14 @@ const NewSpot = () => {
         if (!state) {
             errors.state = "State is required"
         }
-        if (!lng) {
-            errors.lng = "Lng is required"
-        }
-        if (!lat) {
-            errors.lat = "Lat is requried"
-        }
+        // if (!lng) {
+        //     errors.lng = "Lng is required"
+        // }
+        // if (!lat) {
+        //     errors.lat = "Lat is requried"
+        // }
         if (!description || description.length < 30) {
-            errors.description = "Description needs atleast 30 characters"
+            errors.description = "Description needs a minimum of 30 characters"
         }
         if (!name) {
             errors.name = "Name is required"
@@ -86,8 +86,8 @@ const NewSpot = () => {
                 city,
                 state,
                 country,
-                lat,
-                lng,
+                // lat,
+                // lng,
                 name,
                 description,
                 price
@@ -119,47 +119,73 @@ const NewSpot = () => {
         <section className="create-spot-form-wrapper">
             <form onSubmit={handleNewSpot} className="new-spot-form">
                 <div>
+                    <h1>Create a new Spot</h1>
+                    <h2>Where's your place located?</h2>
+                    <p className="create-spot-descriptions">Guests will only get your exact address once they booked a
+                        reservation.</p>
+                    <span>
+                        <label>Country
+                            {errors.country && (
+                                <p className='error-create'>{errors.country}</p>
+                            )}
+                        </label>
+                    </span>
+
                     <input
                         type="string"
-                        placeholder="country"
+                        placeholder="Country"
                         value={country}
                         onChange={updateCountry} />
-                    {errors.country && (
-                        <p className='error-create'>{errors.country}</p>
-                    )}
+
                 </div>
                 <div>
+                    <span>
+                        <label>Street Address {errors.address && (
+                            <p className='error-create'>{errors.address}</p>
+                        )}</label>
+
+                    </span>
                     <input
                         type="string"
-                        placeholder="address"
+                        placeholder="Address"
                         value={address}
                         onChange={updateAddress} />
-                    {errors.address && (
-                        <p className='error-create'>{errors.address}</p>
-                    )}
+
                 </div>
 
                 <div>
+                    <span>
+                        <label>City
+                            {errors.city && (
+                                <p className='error-create'>{errors.city}</p>
+                            )}
+                        </label>
+
+                    </span>
                     <input
                         type="string"
-                        placeholder="city"
+                        placeholder="City"
                         value={city}
                         onChange={updateCity} />
-                    {errors.city && (
-                        <p className='error-create'>{errors.city}</p>
-                    )}
+
                 </div>
                 <div>
+                    <span>
+                        <label>State
+                            {errors.state && (
+                                <p className='error-create'>{errors.state}</p>
+                            )}
+                        </label>
+
+                    </span>
                     <input
                         type="string"
-                        placeholder="STATE"
+                        placeholder="State"
                         value={state}
                         onChange={updateState} />
-                    {errors.state && (
-                        <p className='error-create'>{errors.state}</p>
-                    )}
+
                 </div>
-                <div>
+                {/* <div>
                     <input
                         type="number"
                         placeholder="Latitutde"
@@ -170,8 +196,8 @@ const NewSpot = () => {
                     {errors.lat && (
                         <p className='error-create'>{errors.lat}</p>
                     )}
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <input
                         type="number"
                         placeholder="Longitude"
@@ -182,47 +208,69 @@ const NewSpot = () => {
                     {errors.lng && (
                         <p className='error-create'>{errors.lng}</p>
                     )}
-                </div>
+                </div> */}
                 <div>
+                    <h2>Describe your place to guests</h2>
+                    <p className="create-spot-descriptions">Mention the best features of your space, any special amentities like
+                        fast wif or parking, and what you love about the neighborhood.</p>
+                    <textarea
+                        type="string"
+                        placeholder="Please write at least 30 characters"
+                        value={description}
+                        onChange={updateDescription}
+                        style={{ height: 200 }}
+                    />
+                    {errors.description && (
+                        <p className='error-create-under'>{errors.description}</p>
+                    )}
+                </div>
+                <hr></hr>
+                <div>
+                    <h2>Create a title for your spot</h2>
+                    <p className="create-spot-descriptions">Catch guests' attention with a spot title that highlights what makes
+                        your place special.</p>
                     <input
                         type="string"
-                        placeholder="Name"
+                        placeholder="Name of your spot"
                         value={name}
                         onChange={updateName} />
                     {errors.name && (
-                        <p className='error-create'>{errors.name}</p>
-                    )}
-                </div>
-                <div>
-                    <input
-                        type="string"
-                        placeholder="Description"
-                        value={description}
-                        onChange={updateDescription} />
-                    {errors.description && (
-                        <p className='error-create'>{errors.description}</p>
+                        <p className='error-create-under'>{errors.name}</p>
                     )}
 
                 </div>
+                <hr></hr>
                 <div>
-                    <input
-                        type="number"
-                        placeholder="Price per Night (USD)"
-                        min="0"
-                        value={price}
-                        onChange={updatePrice} />
+                    <h2>Set a base price for your spot</h2>
+                    <p className="create-spot-descriptions">Competitive pricing can help your listing stand out and rank higher
+                        in search results.</p>
+                    <span>
+                        $
+                        <input
+                            id="create-spot-price-input"
+                            type="number"
+                            placeholder="Price per Night (USD)"
+                            min="0"
+                            value={price}
+                            onChange={updatePrice} />
+
+                    </span>
+
                     {errors.price && (
-                        <p className='error-create'>{errors.price}</p>
+                        <p className='error-create-under'>{errors.price}</p>
                     )}
                 </div>
+                <hr></hr>
                 <div>
+                    <h2>Liven up your spot with photos</h2>
+                    <p className="create-spot-descriptions">Submit a link to at least one photo to publish your spot.</p>
                     <input
                         type="string"
                         placeholder="Preview Image Url"
                         value={previewImage}
                         onChange={updatePreviewImage} />
                     {errors.previewImage && (
-                        <p className='error-create'>{errors.previewImage}</p>
+                        <p className='error-create-under'>{errors.previewImage}</p>
                     )}
                 </div>
                 <div>
@@ -240,9 +288,10 @@ const NewSpot = () => {
                         </div>
                     ))}
                     {errors.url && (
-                        <p className='error-create'>{errors.url}</p>
+                        <p className='error-create-under'>{errors.url}</p>
                     )}
                 </div>
+                <hr></hr>
                 <button type="submit" className="create-spot-btn" disabled={validSubmit}>Create Spot</button>
             </form>
         </section>

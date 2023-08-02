@@ -15,7 +15,6 @@ const SpotDetails = ({ isLoaded }) => {
 
 
     const spot = useSelector((state) => state.spots.spotDetails);
-    console.log('SPOT', spot)
     const reviewsObj = useSelector(state => state.spots.spotReviews);
     const reviewsObjAgain = reviewsObj ? Object.values(reviewsObj) : [];
     const reviews = reviewsObjAgain[0] ? reviewsObjAgain[0] : [];
@@ -127,9 +126,12 @@ const SpotDetails = ({ isLoaded }) => {
                                 <div className='review-date'>{fixDate(review.updatedAt)}</div>
                                 <div className='review-review'>{review.review}</div>
 
-                                {review.userId === sessionUser.id && (
+                                {sessionUser && review.userId === sessionUser.id && (
                                     // <button id='delete-review-btn'>Delete Review</button>
-                                    <Modal modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText="Delete Review" />
+                                    <div id='delete-review-modal-div'>
+
+                                        <Modal modalComponent={<DeleteReviewModal reviewId={review.id} />} buttonText="Delete Review" />
+                                    </div>
                                 )}
                             </div>
                         ))}

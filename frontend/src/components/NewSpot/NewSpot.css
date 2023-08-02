@@ -1,3 +1,7 @@
+*:disabled {
+    background-color: dimgrey;
+}
+
 .create-spot-form-wrapper {
     width: 100vw;
     height: auto;
@@ -6,17 +10,24 @@
     /* align-items: center; */
 }
 
+#create-spot-price-input {
+    width: 490px;
+    margin-left: 10px;
+}
+
+
 .new-spot-form {
     margin-top: 150px;
-    text-align: center;
+    text-align: left;
     height: max-content;
-    max-width: 700px;
+    max-width: 600px;
     padding: 45px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 20px;
     margin-bottom: 80px;
 }
 
+.new-spot-form textarea,
 .new-spot-form input {
     outline: 0;
     background: #f2f2f2;
@@ -26,27 +37,67 @@
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-    border-radius: 20px;
+    border-radius: 8px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.new-spot-form textarea {
+    resize: none;
+
 }
 
 .new-spot-form button {
     outline: 0;
     background: #ff385c;
     width: 100%;
-    border: 1px solid #FFFFFF;
+    /* border: 1px solid #FFFFFF; */
     padding: 15px;
     color: #FFFFFF;
     font-size: 20px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+
+    transition: box-shadow 0.3s;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 
-.new-spot-form h3 {
-    padding-top: 20px;
+.new-spot-form h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
 }
+
+.new-spot-form button:hover {
+    box-shadow: 2px 2px 2px black;
+}
+
+.new-spot-form h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+.create-spot-descriptions {
+    margin-bottom: 20px;
+    color: grey;
+}
+
 
 .new-spot-form label {
     padding-top: 20px;
 }
+
+.new-spot-form .error-create {
+    display: inline-block;
+    padding-left: 10px;
+    color: red;
+}
+
+.new-spot-form .error-create-under {
+    padding-left: 0;
+    color: red;
+}
+

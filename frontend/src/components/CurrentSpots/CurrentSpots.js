@@ -45,15 +45,14 @@ function CurrentSpots() {
 
 
 
-                    <div key={spot.id} className='spot-tile'>
+                    <div key={spot.id} className='spot-tile' id='spot-tile'>
 
                         <NavLink to={`/spots/${spot.id}`} title={spot.name}>
-                            <div>
+                            <div id='spot-preview-image-div'>
 
                                 <img src={spot.previewImage} alt='Spot Preview' className='spot-image' />
                             </div>
 
-                        </NavLink>
 
                         <div className='spot-name'>{spot?.city}, {spot?.state}
                             <span className='stars'>
@@ -70,6 +69,7 @@ function CurrentSpots() {
                             <span>/night</span>
 
                         </span>
+                        </NavLink>
 
                         <div className='update-delete-div'>
 

@@ -14,15 +14,15 @@ const UpdateSpot = () => {
     const [validSubmit, setValidSubmit] = useState(false);
 
     const [formData, setFormData] = useState({
-        name: "",
-        city: "",
-        state: "",
-        address: "",
-        country: "",
-        lat: "",
-        lng: "",
-        description: "",
-        price: ""
+        name: spot?.name || "",
+        city: spot?.city || "",
+        state: spot?.state || "",
+        address: spot?.address || "",
+        country: spot?.country || "",
+        lat: spot?.lat || "",
+        lng: spot?.lng || "",
+        description: spot?.description || "",
+        price: spot?.price || ""
     });
 
     useEffect(() => {
@@ -99,129 +99,132 @@ const UpdateSpot = () => {
 
     return (
         <div id="update-spot-container">
-            <h2>Update Spot</h2>
-            <form onSubmit={handleSubmit}>
+            <>
+                <h2>Update Spot</h2>
+                <form onSubmit={handleSubmit}>
 
-                <div>
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    {errors.name && (
-                        <p className='error-create'>{errors.name}</p>
-                    )}
-                </div>
+                    <div>
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={e => setFormData({name:spot.name})}
+                        />
+                        {errors.name && (
+                            <p className='error-create'>{errors.name}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>City</label>
-                    <input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleChange}
-                    />
-                    {errors.city && (
-                        <p className='error-create'>{errors.city}</p>
-                    )}
-                </div>
+                    <div>
+                        <label>City</label>
+                        <input
+                            type="text"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
+                        />
+                        {errors.city && (
+                            <p className='error-create'>{errors.city}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>State</label>
-                    <input
-                        type="text"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleChange}
-                    />
-                    {errors.state && (
-                        <p className='error-create'>{errors.state}</p>
-                    )}
-                </div>
+                    <div>
+                        <label>State</label>
+                        <input
+                            type="text"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
+                        />
+                        {errors.state && (
+                            <p className='error-create'>{errors.state}</p>
+                        )}
+                    </div>
 
-                <div>
-                    <label>address</label>
-                    <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                    />
-                    {errors.address && (
-                        <p className='error-create'>{errors.address}</p>
-                    )}
-                </div>
-                <div>
-                    <label>country</label>
-                    <input
-                        type="text"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                    />
-                    {errors.country && (
-                        <p className='error-create'>{errors.country}</p>
-                    )}
-                </div>
-                <div>
-                    <label>lat</label>
-                    <input
-                        type="number"
-                        name="lat"
-                        min="-90"
-                        max="90"
-                        value={formData.lat}
-                        onChange={handleChange}
-                    />
-                    {errors.lat && (
-                        <p className='error-create'>{errors.lat}</p>
-                    )}
-                </div>
-                <div>
-                    <label>lng</label>
-                    <input
-                        type="number"
-                        name="lng"
-                        min="-180"
-                        max="180"
-                        value={formData.lng}
-                        onChange={handleChange}
-                    />
-                    {errors.lng && (
-                        <p className='error-create'>{errors.lng}</p>
-                    )}
-                </div>
-                <div>
-                    <label>description</label>
-                    <input
-                        type="text"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                    />
-                    {errors.description && (
-                        <p className='error-create'>{errors.description}</p>
-                    )}
-                </div>
-                <div>
-                    <label>price</label>
-                    <input
-                        type="number"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleChange}
-                    />
-                    {errors.price && (
-                        <p className='error-create'>{errors.price}</p>
-                    )}
-                </div>
+                    <div>
+                        <label>address</label>
+                        <input
+                            type="text"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleChange}
+                        />
+                        {errors.address && (
+                            <p className='error-create'>{errors.address}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label>country</label>
+                        <input
+                            type="text"
+                            name="country"
+                            value={formData.country}
+                            onChange={handleChange}
+                        />
+                        {errors.country && (
+                            <p className='error-create'>{errors.country}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label>lat</label>
+                        <input
+                            type="number"
+                            name="lat"
+                            min="-90"
+                            max="90"
+                            value={formData.lat}
+                            onChange={handleChange}
+                        />
+                        {errors.lat && (
+                            <p className='error-create'>{errors.lat}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label>lng</label>
+                        <input
+                            type="number"
+                            name="lng"
+                            min="-180"
+                            max="180"
+                            value={formData.lng}
+                            onChange={handleChange}
+                        />
+                        {errors.lng && (
+                            <p className='error-create'>{errors.lng}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label>description</label>
+                        <input
+                            type="text"
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                        />
+                        {errors.description && (
+                            <p className='error-create'>{errors.description}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label>price</label>
+                        <input
+                            type="number"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                        />
+                        {errors.price && (
+                            <p className='error-create'>{errors.price}</p>
+                        )}
+                    </div>
 
-                <button type="submit" disabled={validSubmit}>Update</button>
-            </form>
+                    <button type="submit" disabled={validSubmit}>Update</button>
+                </form>
+            </>
         </div>
     );
 };
+
 
 export default UpdateSpot;

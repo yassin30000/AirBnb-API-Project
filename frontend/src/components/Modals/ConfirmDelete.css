@@ -13,8 +13,8 @@
 }
 
 .confirm-content {
-    background: white;
-    padding: 15px 28px;
+    background-color: white;
+    padding: 28px;
     border-radius: 10px;
     text-align: center;
     color: black;
@@ -38,18 +38,26 @@
     justify-content: center;
 }
 
+
+.confirm-btns-div .modal-close-btn {
+    background-color: grey;
+}
+
+.confirm-delete-btn {
+    background-color: #ff385c;
+}
+
 .confirm-delete-btn,
 .confirm-btns-div .modal-close-btn {
-    border: 1px solid black;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 200px;
     cursor: pointer;
-    color: black;
+    color: white;
+    transition: box-shadow .3s;
 }
 
 .confirm-delete-btn:hover,
 .confirm-btns-div .modal-close-btn:hover {
-    background-color: #ddd;
+    box-shadow: 2px 2px 2px black;
 }
-
