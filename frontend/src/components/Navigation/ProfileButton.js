@@ -32,6 +32,7 @@ function ProfileButton({ user }) {
 
     const logout = (e) => {
         e.preventDefault();
+        setShowMenu(false);
         dispatch(sessionActions.logout());
         history.push('/')
     };
@@ -57,7 +58,7 @@ function ProfileButton({ user }) {
                 ) : (
                     <>
                         <li>
-                            <NavLink to="/login">Log In</NavLink>
+                            <NavLink to="/login" onClick={() => setShowMenu(false)}>Log In</NavLink>
                             <NavLink to="/signup">Sign Up</NavLink>
                         </li>
                     </>
