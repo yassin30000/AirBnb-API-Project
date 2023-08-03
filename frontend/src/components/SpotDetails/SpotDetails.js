@@ -15,10 +15,10 @@ const SpotDetails = ({ isLoaded }) => {
 
 
     const spot = useSelector((state) => state.spots.spotDetails);
-    console.log('SPOT', spot)
     const reviewsObj = useSelector(state => state.spots.spotReviews);
     const reviewsObjAgain = reviewsObj ? Object.values(reviewsObj) : [];
-    const reviews = reviewsObjAgain[0] ? reviewsObjAgain[0] : [];
+    const reversedReviews = reviewsObjAgain[0] ? reviewsObjAgain[0] : [];
+    const reviews = Array.isArray(reversedReviews) ? reversedReviews.slice().reverse() : [];
     const sessionUser = useSelector(state => state.session.user);
 
     let hasReview, isOwner, postReviewBtn;
@@ -34,13 +34,20 @@ const SpotDetails = ({ isLoaded }) => {
         }
     }
 
+    const noReviewsTxt = !isOwner && sessionUser && spot?.numReviews === 0 ?
+        (
+            <>
+                <h3 id='first-post-txt'>Be the first to post a review!</h3>
+            </>
+        ) : <></>
+
     postReviewBtn = (
         <div id='post-review-btn'>
 
             <Modal buttonText='Post Review' modalComponent={<ReviewModal />} />
         </div>
     );
-    console.log(postReviewBtn)
+
     if (!hasReview && !isOwner && sessionUser) {
     } else {
         postReviewBtn = (<></>);
@@ -107,16 +114,25 @@ const SpotDetails = ({ isLoaded }) => {
 
                     <div className='num-of-reviews'>
                         <span>
+
                             <i class="fa-solid fa-star"></i>
+
                             {spot.avgRating ? spot.avgRating : 'new'}
 
                         </span>
-                        ·
-                        <span>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</span>
+                        {spot.numReviews === 0 ? <></> : (
+                            <>
+                                ·
+                                <span>{spot.numReviews} {spot.numReviews === 1 ? 'review' : 'reviews'}</span>
+                            </>
+
+                        )}
                     </div>
 
-
+                    {noReviewsTxt}
                     {postReviewBtn}
+
+
 
                     <div className='spot-reviews-wrapper'>
 
@@ -127,10 +143,14 @@ const SpotDetails = ({ isLoaded }) => {
                                 <div className='review-date'>{fixDate(review.updatedAt)}</div>
                                 <div className='review-review'>{review.review}</div>
 
-                                {review.userId === sessionUser.id && (
+                                {sessionUser && review.userId === sessionUser.id && (
                                     // <button id='delete-review-btn'>Delete Review</button>
-                                    <Modal modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText="Delete Review" />
+                                    <div id='delete-review-modal-div'>
+
+                                        <Modal modalComponent={<DeleteReviewModal reviewId={review.id} />} buttonText="Delete Review" />
+                                    </div>
                                 )}
+
                             </div>
                         ))}
                     </div>

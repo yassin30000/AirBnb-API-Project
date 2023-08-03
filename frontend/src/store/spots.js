@@ -61,15 +61,14 @@ export const createSpotImage = (spotId, imageUrl) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(imageUrl), // Ensure imageUrl is correctly formatted
+        body: JSON.stringify(imageUrl)
     });
 
     if (res.ok) {
         const spotImage = await res.json();
-        dispatch(createImage(spotId, spotImage)); // Dispatch the createImage action to update the state with the new spot image
-        return spotImage;
+        dispatch(createImage(spotId, spotImage));
     } else {
-        // Handle error cases here if needed
+
         console.log("Spot image creation failed:", res);
         return null;
     }
@@ -84,10 +83,10 @@ export const createSpot = (spotData) => async (dispatch) => {
 
     if (res.ok) {
         const spot = await res.json();
-        dispatch(load(spot)); // Dispatch the load action to update the state with the new spot
+        dispatch(load(spot));
         return spot;
     } else {
-        // Handle error cases here if needed
+
         console.log("Spot creation failed SPOTS.JS:", res);
         return null;
     }
@@ -103,10 +102,10 @@ export const createSpotReview = (spotId, reviewData) => async (dispatch) => {
 
     if (res.ok) {
         const review = await res.json();
-        dispatch(loadSpotReviews(review)); // Dispatch the load action to update the state with the new spot
+        dispatch(loadSpotReviews(review));
         return review;
     } else {
-        // Handle error cases here if needed
+
         console.log("Spot creation failed SPOTS.JS:", res);
         return null;
     }
@@ -121,27 +120,22 @@ export const removeSpot = (spotId) => async (dispatch) => {
 
     if (res.ok) {
         const list = await res.json();
-        return dispatch(load(list)); // Dispatch the deleteSpot action to update the state
+        return dispatch(load(list));
 
     } else {
-        // Handle error cases here if needed
         console.log("Spot deletion failed:", res);
         return null;
     }
 };
 
-// update spot
-// spotActions.js
-// Action Types
+
 const UPDATE_SPOT = "spots/UPDATE_SPOT";
 
-// Action Creator
 const updateSpotAction = (spot) => ({
     type: UPDATE_SPOT,
     spot,
 });
 
-// Thunk for updating the spot
 export const updateSpot = (spotId, spotData) => async (dispatch) => {
     try {
         const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -157,11 +151,9 @@ export const updateSpot = (spotId, spotData) => async (dispatch) => {
             dispatch(updateSpotAction(updatedSpot));
             return updatedSpot;
         } else {
-            // Handle the error or throw an error here
             console.log("Spot update failed:", response);
         }
     } catch (error) {
-        // Handle the error or throw an error here
         console.log("Spot update failed:", error);
     }
 };
@@ -198,22 +190,22 @@ const initialState = { list: [] };
 const spotsReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
         case LOAD:
+
             return { ...state, list: action.list };
         case LOAD_SPOT_DETAILS:
 
-            // newState[action.spotDetails.id] = action.spotDetails
             return { ...state, spotDetails: action.spotDetails }
 
         case LOAD_SPOT_REVIEWS:
-            // newState[action.hello] = action.spotReviews
             return { ...state, spotReviews: action.spotReviews }
 
-        case UPDATE_SPOT: 
-            return { ...state, spotDetails: action.spotDetails}
+        case UPDATE_SPOT:
+            return { ...state, spotDetails: action.spotDetails }
 
         case DELETE_REVIEW:
-            return { ...state, spotReviews: action.spotReviews}
+            return { ...state, spotReviews: action.spotReviews }
 
         default:
             return state;

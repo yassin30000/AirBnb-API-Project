@@ -38,14 +38,10 @@ li a {
     padding: 10px;
 }
 
-
-
 .logoutLI>button:hover {
     cursor: pointer;
    
 }
-
-
 
 .navBar {
     display: flex;
@@ -60,6 +56,7 @@ li a {
     font-size: 14px;
     border-bottom: 1px solid rgb(219, 216, 216);
     background-color: white;
+    height: 90px;
 }
 
 .nav-links-container {

@@ -119,9 +119,9 @@
 
 
 
-.post-review-btn:hover {
+/* .post-review-btn:hover {
     box-shadow: 2px 2px 2px black;
-}
+} */
 
 .review-modal,
 .review-modal-overlay {
@@ -151,13 +151,11 @@
     min-width: 300px;
 }
 
-
-
 body.active-modal {
     overflow-y: hidden;
 }
 
-#delete-review-btn,
+/* #delete-review-btn,
 #post-review-btn {
     width: 120px;
     text-align: center;
@@ -167,13 +165,40 @@ body.active-modal {
     margin-bottom: 15px;
     transition: box-shadow .3s;
 
-}
+} */
 
-#delete-review-btn:hover,
+/* #delete-review-btn:hover,
 #post-review-btn:hover {
     box-shadow: 2px 2px 2px black;
+} */
+
+/* #delete-review-btn {
+    color: white;
+} */
+
+.review-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 5px;
+    padding-bottom: 20px;
 }
 
-#delete-review-btn {
-    color: white;
+
+.review-date {
+    color: grey;
+    margin-bottom: 5px;
+}
+
+.review-review {
+    padding-bottom: 15px;
+}
+
+#delete-review-modal-div {
+    width: max-content;
+}
+
+#first-post-txt {
+    margin-bottom: 15px;
 }
