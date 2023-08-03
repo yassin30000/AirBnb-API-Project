@@ -16,8 +16,8 @@ const NewSpot = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [previewImage, setPreviewImage] = useState("");
-    // const [lat, setLat] = useState(0);
-    // const [lng, setLng] = useState(0);
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
     const [urls, setUrls] = useState(["", "", "", ""]);
     const [preview, setPreview] = useState('')
     const [errors, setErrors] = useState({});
@@ -27,8 +27,8 @@ const NewSpot = () => {
     const updateCity = (e) => setCity(e.target.value);
     const updateState = (e) => setState(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
-    // const updateLat = (e) => setLat(e.target.value);
-    // const updateLng = (e) => setLng(e.target.value);
+    const updateLat = (e) => setLat(e.target.value);
+    const updateLng = (e) => setLng(e.target.value);
     const updateName = (e) => setName(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
@@ -54,12 +54,12 @@ const NewSpot = () => {
         if (!state) {
             errors.state = "State is required"
         }
-        // if (!lng) {
-        //     errors.lng = "Lng is required"
-        // }
-        // if (!lat) {
-        //     errors.lat = "Lat is requried"
-        // }
+        if (!lng) {
+            errors.lng = "Lng is required"
+        }
+        if (!lat) {
+            errors.lat = "Lat is requried"
+        }
         if (!description || description.length < 30) {
             errors.description = "Description needs a minimum of 30 characters"
         }
@@ -86,8 +86,8 @@ const NewSpot = () => {
                 city,
                 state,
                 country,
-                // lat,
-                // lng,
+                lat,
+                lng,
                 name,
                 description,
                 price
@@ -185,7 +185,7 @@ const NewSpot = () => {
                         onChange={updateState} />
 
                 </div>
-                {/* <div>
+                <div>
                     <input
                         type="number"
                         placeholder="Latitutde"
@@ -196,8 +196,8 @@ const NewSpot = () => {
                     {errors.lat && (
                         <p className='error-create'>{errors.lat}</p>
                     )}
-                </div> */}
-                {/* <div>
+                </div>
+                <div>
                     <input
                         type="number"
                         placeholder="Longitude"
@@ -208,7 +208,7 @@ const NewSpot = () => {
                     {errors.lng && (
                         <p className='error-create'>{errors.lng}</p>
                     )}
-                </div> */}
+                </div>
                 <div>
                     <h2>Describe your place to guests</h2>
                     <p className="create-spot-descriptions">Mention the best features of your space, any special amentities like

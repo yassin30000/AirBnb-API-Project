@@ -65,6 +65,13 @@
     text-align: center;
 }
 
+.login-errors {
+    color: #ff385c;
+    font-size: 14px;
+
+    padding-bottom: 8px;
+}
+
 
 
 
