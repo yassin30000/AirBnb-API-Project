@@ -46,7 +46,7 @@ function LoginFormPage() {
             <form className='loginForm' onSubmit={handleSubmit}>
                 <h1>Log In</h1>
                 <div className="log-in-errors">
-                    {errors && <p>{errors.message}</p>}
+                    {errors && <p className="login-errors">{errors.message}</p>}
                 </div>
                 <label>
                     Username or Email
