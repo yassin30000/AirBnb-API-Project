@@ -11,6 +11,7 @@
     grid-gap: 10px;
     grid-template-columns: 300px 300px;
     grid-template-areas: "signup signup"
+        "errors errors"
         "... ..."
         "... ..."
         "... ..."
@@ -88,4 +89,9 @@
 
 .signupForm>h1 {
     text-align: center;
+}
+
+.signup-errors {
+    color: red;
+    grid-area: errors;
 }
