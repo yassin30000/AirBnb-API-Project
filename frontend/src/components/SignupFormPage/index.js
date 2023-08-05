@@ -43,8 +43,9 @@ function SignupFormPage() {
                 })
             ).catch(async (res) => {
                 const data = await res.json();
+                console.log('DATA: ', data.errors)
                 if (data && data.errors) {
-                    setErrors(data.errors);
+                    return setErrors(data.errors);
                 }
             });
         }
@@ -55,10 +56,14 @@ function SignupFormPage() {
 
     return (
         <div className="form-container">
-            <form className='signupForm'onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
+            <form className='signupForm' onSubmit={handleSubmit}>
+                <h1>Sign Up</h1>
+                {errors && errors.undefined && (
+                    <p className="signup-errors">{errors.undefined}</p>
+                )}
                 <label>
                     Email
+                    
                     <input
                         type="text"
                         value={email}
@@ -66,7 +71,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.email && <p>{errors.email}</p>}
+                {errors.email && <p className="signup-errors">{errors.email}</p>}
                 <label>
                     Username
                     <input
@@ -76,7 +81,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.username && <p>{errors.username}</p>}
+                {errors.username && <p className="signup-errors">{errors.username}</p>}
                 <label>
                     First Name
                     <input
@@ -86,7 +91,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.firstName && <p>{errors.firstName}</p>}
+                {errors.firstName && <p className="signup-errors">{errors.firstName}</p>}
                 <label>
                     Last Name
                     <input
@@ -96,7 +101,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.lastName && <p>{errors.lastName}</p>}
+                {errors.lastName && <p className="signup-errors">{errors.lastName}</p>}
                 <label>
                     Password
                     <input
@@ -106,7 +111,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.password && <p>{errors.password}</p>}
+                {errors.password && <p className="signup-errors">{errors.password}</p>}
                 <label>
                     Confirm Password
                     <input
@@ -116,7 +121,7 @@ function SignupFormPage() {
                         required
                     />
                 </label>
-                {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+                {errors.confirmPassword && <p className="signup-errors">{errors.confirmPassword}</p>}
                 <button type="submit" disabled={emailValid || usernameValid || usernameLength || firstNameValid || lastNameValid || passwordValid || passwordLength || confirmPasswordValid} id="signup-form-button">Sign Up</button>
             </form>
         </div>

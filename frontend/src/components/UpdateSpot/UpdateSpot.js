@@ -412,6 +412,9 @@ const UpdateSpot = () => {
 
                 </div>
                 <div>
+                    <span><label>Lat {errors.lat && (
+                        <p className='error-create'>{errors.lat}</p>
+                    )}</label></span>
                     <input
                         type="number"
                         placeholder="Latitutde"
@@ -419,11 +422,11 @@ const UpdateSpot = () => {
                         max="90"
                         value={lat}
                         onChange={updateLat} />
-                    {errors.lat && (
-                        <p className='error-create'>{errors.lat}</p>
-                    )}
                 </div>
                 <div>
+                    <span><label>Lng {errors.lng && (
+                        <p className='error-create'>{errors.lng}</p>
+                    )}</label></span>
                     <input
                         type="number"
                         placeholder="Longitude"
@@ -431,9 +434,6 @@ const UpdateSpot = () => {
                         max="180"
                         value={lng}
                         onChange={updateLng} />
-                    {errors.lng && (
-                        <p className='error-create'>{errors.lng}</p>
-                    )}
                 </div>
                 <div>
                     <h2>Describe your place to guests</h2>
