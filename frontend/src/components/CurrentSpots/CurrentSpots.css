@@ -81,14 +81,16 @@
 .spot-tile p {
     font-size: 16px;
     color: #717171;
-    font-family: 'AirbnbCereal_W_Lt';
+    /* font-family: 'AirbnbCereal_W_Lt'; */
+    font-weight: 200;
     margin-bottom: 6px;
 }
 
 .spot-tile>span {
     font-size: 16px;
     color: black;
-    font-family: 'AirbnbCereal_W_Md';
+    /* font-family: 'AirbnbCereal_W_Md'; */
+    
 }
 
 /* UPDATE BUTTON */

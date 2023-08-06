@@ -7,7 +7,7 @@
 
 .spots-list {
     display: grid;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     justify-items: center;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -37,7 +37,7 @@
 }
 
 .spot-tile .spot-image:hover {
-        box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
 .spot-tile .spot-name {
@@ -50,27 +50,29 @@
 .spot-tile p {
     font-size: 16px;
     color: #717171;
-    font-family: 'AirbnbCereal_W_Lt';
+    /* font-family: 'AirbnbCereal_W_Lt'; */
+    font-weight: 200;
     margin-bottom: 6px;
 }
 
 .spot-tile>span {
     font-size: 16px;
     color: black;
-    font-family: 'AirbnbCereal_W_Md';
+    /* font-family: 'AirbnbCereal_W_Md'; */
 }
 
 .spot-tile>span>span {
     font-size: 16px;
     color: black;
-    font-family: 'AirbnbCereal_W_Lt';
+    /* font-family: 'AirbnbCereal_W_Lt'; */
+    font-weight: 200;
 }
 
 .stars {
-    font-family: 'AirbnbCereal_W_Lt';
+    /* font-family: 'AirbnbCereal_W_Lt'; */
     display: flex;
     align-items: center;
-
+    font-weight: 200;
 }
 
 .stars i {
@@ -78,4 +80,3 @@
     margin-right: 4px;
 
 }
-
