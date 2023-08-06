@@ -32,21 +32,21 @@
 
 
 
-.spots-list {
+/* .spots-list {
     display: grid;
     justify-content: space-between;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
+} */
 
-#spot-tile {
+/* #spot-tile {
     width: 330px;
     transition: box-shadow .3s;
     padding: 15px;
     border-radius: 15px;
     color: black;
     cursor: default;
-}
+} */
 
 /* #spot-tile:hover {
     box-shadow: none;
@@ -93,13 +93,21 @@
     
 }
 
+
+/* PRICE DIV */
+.priceDiv {
+    /* background-color: red; */
+    padding-bottom: 15px;
+}
+
 /* UPDATE BUTTON */
 
 .update-delete-div {
     display: flex;
     gap: 10px;
-    margin-top: 15px;
+    /* padding-top: 15px; */
     align-items: center;
+    /* background-color: blue; */
 }
 
 .update-spot-btn a {
@@ -111,6 +119,7 @@
     font-size: 15px;
     transition: box-shadow .3s;
     width: max-content;
+
 }
 
 .update-spot-btn a:hover {

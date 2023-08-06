@@ -16,7 +16,6 @@ export default function ConfirmDelete({ spotId }) {
         console.log("Deleted Spot:", deletedSpot);
 
 
-
         if (deletedSpot) {
             console.log("Spot deleted successfully");
 
