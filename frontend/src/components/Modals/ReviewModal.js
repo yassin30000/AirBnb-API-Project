@@ -46,14 +46,13 @@ export default function ReviewModal() {
 
             const safeReview = { review, stars };
 
-            console.log(safeReview)
-
             try {
                 await dispatch(createSpotReview(spotId, safeReview))
                 window.location.reload();
                 history.push(`/spots/${spotId}`)
             } catch (error) {
                 console.log('REVIEW CREATING FAILED IN REVIEWMODAL.JS: ', error)
+                return setErrors(error)
             }
             setValidSubmit(false)
         }

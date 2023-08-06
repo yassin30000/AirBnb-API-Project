@@ -37,81 +37,51 @@ const NewSpot = () => {
         setPreview(true);
     };
 
+    const valid = !address || !city || !state || !lat || !lng || !country || !name || !description || !price || !previewImage;
+
 
     const handleNewSpot = async (e) => {
         e.preventDefault();
 
         const errors = {};
-        if (!country) {
-            errors.country = "Country is required";
-        }
-        if (!address) {
-            errors.address = "Street address is required"
-        }
-        if (!city) {
-            errors.city = "City is required"
-        }
-        if (!state) {
-            errors.state = "State is required"
-        }
-        if (!lng) {
-            errors.lng = "Lng is required"
-        }
-        if (!lat) {
-            errors.lat = "Lat is requried"
-        }
-        if (!description || description.length < 30) {
-            errors.description = "Description needs a minimum of 30 characters"
-        }
-        if (!name) {
-            errors.name = "Name is required"
-        }
-        if (!price) {
-            errors.price = "Price is required"
-        }
-        if (!previewImage) {
-            errors.previewImage = "Preview Image is required"
-        }
-        if (!urls) {
-            errors.url = "Urls need to be a png, jpg, or a jpeg"
-        }
+        if (!country) errors.country = "Country is required";
+        if (!address) errors.address = "Street address is required"
+        if (!city) errors.city = "City is required"
+        if (!state) errors.state = "State is required"
+        if (!lng) errors.lng = "Lng is required"
+        if (!lat) errors.lat = "Lat is requried"
+        if (!description || description.length < 30) errors.description = "Description needs a minimum of 30 characters"
+        if (!name) errors.name = "Name is required"
+        if (!price) errors.price = "Price is required"
+        if (!previewImage) errors.previewImage = "Preview Image is required"
+        if (!urls) errors.url = "Urls need to be a png, jpg, or a jpeg"
 
         setErrors(errors)
 
         if (Object.values(errors).length == 0) {
             setValidSubmit(true);
 
-            const safeSpot = {
-                address,
-                city,
-                state,
-                country,
-                lat,
-                lng,
-                name,
-                description,
-                price
-            };
-
             try {
+                const safeSpot = { address, city, state, country, lat, lng, name, description, price };
                 const createdSpot = await dispatch(createSpot(safeSpot));
 
-                await dispatch(
-                    createSpotImage(createdSpot.spot.id, { preview: true, url: previewImage })
-                );
+                await dispatch(createSpotImage(createdSpot.spot.id, { preview: true, url: previewImage }));
 
                 urls.forEach(async (url) => {
-                    if (url) {
-                        await dispatch(createSpotImage(createdSpot.spot.id, { preview: false, url: url }));
-                    }
+                    if (url) await dispatch(createSpotImage(createdSpot.spot.id, { preview: false, url: url }));
                 });
 
                 history.push(`/spots/${createdSpot.spot.id}`);
-            } catch (error) {
-                console.log("Spot creation failed NEWSPOT.JS:", error);
+
+                setValidSubmit(false)
+            } catch (res) {
+                const data = res.json();
+                if (data && data.errors) {
+                    return setErrors(data.errors)
+                }
             }
-            setValidSubmit(false)
-        }
+            
+        } 
     }
 
 
@@ -292,7 +262,7 @@ const NewSpot = () => {
                     )}
                 </div>
                 <hr></hr>
-                <button type="submit" className="create-spot-btn" disabled={validSubmit}>Create Spot</button>
+                <button type="submit" className="create-spot-btn" disabled={valid}>Create Spot</button>
             </form>
         </section>
     );

@@ -66,8 +66,18 @@ hr {
     margin-bottom: 30px;
 }
 
-.new-spot-form button:hover {
+.new-spot-form
+.create-spot-btn:hover {
     box-shadow: 2px 2px 2px black;
+}
+
+.new-spot-form .create-spot-btn:disabled {
+    background-color: dimgray;
+}
+
+.create-spot-btn:disabled:hover {
+    box-shadow: none;
+    cursor: default;
 }
 
 .new-spot-form h2 {
