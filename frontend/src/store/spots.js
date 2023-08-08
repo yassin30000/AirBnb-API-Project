@@ -192,10 +192,9 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case LOAD:
-
             return { ...state, list: action.list };
+            
         case LOAD_SPOT_DETAILS:
-
             return { ...state, spotDetails: action.spotDetails }
 
         case LOAD_SPOT_REVIEWS:
